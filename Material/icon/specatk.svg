@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+	<circle cx="60" cy="60" r="44"
+	fill="#383b35"
+	stroke="#cbc9b0"
+	stroke-width="6"
+	/>
+	<line x1="16" y1="60" x2="26" y2="60"
+	stroke="#cbc9b0"
+	stroke-width="9"
+	/>
+	<line x1="104" y1="60" x2="94" y2="60"
+	stroke="#cbc9b0"
+	stroke-width="9"
+	/>
+	<line x1="60" y1="16" x2="60" y2="26"
+	stroke="#cbc9b0"
+	stroke-width="9"
+	/>
+	<line x1="60" y1="104" x2="60" y2="94"
+	stroke="#cbc9b0"
+	stroke-width="9"
+	/>
+</svg>

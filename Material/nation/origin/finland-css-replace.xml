@@ -1,0 +1,62 @@
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #005d96;
+        stroke: #005d96;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+        stroke-width: 0px;
+        fill: #ffc72c;
+      }
+
+      .cls-3 {
+        fill: #282825;
+        stroke-width: 0px;
+      }
+
+      .cls-4 {
+        fill: #dddac3;
+        stroke-width: 0px;
+      }
+
+      .cls-5 {
+        fill: #cd202f;
+        stroke-width: 0px;
+      }
+
+      .cls-6 {
+        fill: #ffc72c;
+      }
+<!--
+
+
+.cls-1 {
+fill="#005d96" stroke="#005d96" stroke-miterlimit="10"
+}
+
+.cls-2 {
+fill-rule="evenodd" stroke-width="0px" fill="#ffc72c"
+}
+
+.cls-3 {
+fill="#282825" stroke-width="0px"
+}
+
+.cls-4 {
+fill="#dddac3" stroke-width="0px"
+}
+
+.cls-5 {
+fill="#cd202f" stroke-width="0px"
+}
+
+.cls-6 {
+fill="#ffc72c"
+}
+
+-->
+    </style>
+  </defs>
