@@ -1,9 +1,0 @@
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\bin\Debug\KardsGen.exe.config
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\bin\Debug\KardsGen.exe
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\bin\Debug\KardsGen.pdb
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.csprojResolveAssemblyReference.cache
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.MainForm.resources
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.Material.resources
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.csproj.GenerateResource.Cache
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.exe
-F:\Projects\dotnet\Framework\c#\KardsGen\KardsGen\obj\x64\Debug\KardsGen.pdb
