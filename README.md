@@ -8,8 +8,6 @@ Kards游戏风格卡牌生成器
 
 代码写得很烂，不少位置参数硬编码，算个能用的东西
 
-过几天有空上传源码和素材
-
 
 
 ### 用法
@@ -34,8 +32,7 @@ Kards游戏风格卡牌生成器
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
-- 图标素材取自Kards官网网页元素矢量图
-- ，类型图标微调白色，使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
+- 图标素材取自Kards官网网页元素矢量图，类型图标微调白色，使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
 	- 攻击和防御背景板修改自法国svg图标，特殊攻击背景板自制
 	- 防御背景板需在上面选中图形，把Scale调成0.5导出
 - 模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
