@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "KfZhMVqQD/pjyq1RDVL+CySqBEKAxreynRg/UajIDwnfb2u0pXZFUw86KsUVmwEHKzTxEQxZnR9GdDncfYMN7g==",
+  "success": true,
+  "projectFilePath": "F:\\Projects\\dotnet\\Framework\\c#\\KardsGen-sdk\\KardsGen\\KardsGen.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x64\\8.0.1\\microsoft.netcore.app.runtime.win-x64.8.0.1.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\8.0.1\\microsoft.windowsdesktop.app.runtime.win-x64.8.0.1.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\8.0.1\\microsoft.aspnetcore.app.runtime.win-x64.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
