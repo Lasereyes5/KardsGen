@@ -153,6 +153,7 @@ namespace KardsGen
 			this.pictureBoxImgView.TabIndex = 11;
 			this.pictureBoxImgView.TabStop = false;
 			this.pictureBoxImgView.Click += new System.EventHandler(this.PictureBoxImgViewClick);
+			this.pictureBoxImgView.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxImgViewPaint);
 			// 
 			// textBoxDescription
 			// 
