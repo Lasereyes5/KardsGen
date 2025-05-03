@@ -52,6 +52,10 @@
   <ItemGroup>
     <Compile Include="CardGen.cs" />
     <Compile Include="ClassExtensions.cs" />
+    <Compile Include="ImageClip.cs" />
+    <Compile Include="ImageClip.Designer.cs">
+      <DependentUpon>ImageClip.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -65,6 +69,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ImageClip.resx">
+      <DependentUpon>ImageClip.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
