@@ -1,5 +1,7 @@
 # KardsGen
 Kards游戏风格卡牌生成器
+使用本工具前请先确认![免责声明](免责声明.md)的内容，若使用本工具则视为同意免责声明
+
 ![卡牌生成器](Cards/卡牌生成器.png)
 
 使用SharpDevelop编写，所以依赖.net framework（一般windows系统都有预装）
