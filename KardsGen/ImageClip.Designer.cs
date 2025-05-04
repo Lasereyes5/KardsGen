@@ -54,7 +54,7 @@ namespace KardsGen
 			this.ImageView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ImageViewMouseDown);
 			this.ImageView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ImageViewMouseMove);
 			this.ImageView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ImageViewMouseUp);
-			this.ImageView.Resize += new System.EventHandler(this.ImageViewResize);
+			//this.ImageView.Resize += new System.EventHandler(this.ImageViewResize);
 			// 
 			// ImageClip
 			// 
