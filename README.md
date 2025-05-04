@@ -4,6 +4,9 @@ Kards游戏风格卡牌生成器
 
 使用SharpDevelop编写，整改了项目文件用.net sdk编译，不过会报判空警告。
 可以使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)进行裁剪
+- 如果不使用或无法使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)，可以换个windows特有的土方法：运行程序并尝试使用一些功能，同时尝试删除程序的所有文件。
+	- 原理：被程序调用到的程序集就会被文件锁给锁住，无法删除，就这样自动清掉了未调用的程序集。（可以复制一份裁剪过的程序，再把回收站里刚才删掉的程序集还原，避免积攒垃圾文件）
+	- 为以防万一，可以把土方法裁剪过后的程序覆盖到先前使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)裁剪的程序目录里，以保证不缺少文件。
 
 代码写得很烂，不少位置参数硬编码，算个能用的东西
 
