@@ -36,6 +36,7 @@ namespace KardsGen
 			canvas=ImageView.CreateGraphics();
 			initRange=FromImgToView(range);
 			ctlRange=initRange;
+   this.ImageView.Resize += new System.EventHandler(this.ImageViewResize);
 		}
 		
 		Rectangle FromImgToView(Rectangle r)
