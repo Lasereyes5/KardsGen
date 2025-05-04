@@ -34,6 +34,7 @@ namespace KardsGen
 			InitializeComponent();
 			ImageView.Image=img;
 			canvas=ImageView.CreateGraphics();
+			imgRange=range;
 			initRange=FromImgToView(range);
 			ctlRange=initRange;
    this.ImageView.Resize += new System.EventHandler(this.ImageViewResize);
