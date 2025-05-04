@@ -93,8 +93,14 @@ namespace ClassExtensions
 	{
 		public static Image CopyFromFile(string imgPath)
 		{
+			using(var img=Image.FromFile(imgPath))
+			{
+				return CopyFromImage(img);
+			};
+		}
+		public static Image CopyFromImage(Image img)
+		{
 			//*
-			var img=Image.FromFile(imgPath);
 			var bmp=new Bitmap(img.Width,img.Height,PixelFormat.Format32bppArgb);
 			
 			Graphics g=Graphics.FromImage(bmp);
@@ -164,7 +170,73 @@ namespace ClassExtensions
 			}
 		}
 	}
-	//*
+	
+	
+	/// <summary>
+	/// Extended to zoom Rectangle A to B/From A to B,or vice versa,just like PictureBox SizeMode=Zoom.
+	/// </summary>
+	public static class RectangleExt
+	{
+		public static Rectangle ZoomFromTo(this Rectangle local,Rectangle source, Rectangle destination,bool reverseZoom=false)
+		{
+			RectangleF sf=source,df=destination,lf=local;
+			return Rectangle.Round(ZoomFromTo(lf,sf,df,reverseZoom));
+		}
+		public static Rectangle ZoomTo(this Rectangle source, Rectangle destination,bool reverseZoom=false)
+		{
+			RectangleF sf=source,df=destination;
+			return Rectangle.Round(ZoomTo(sf,df,reverseZoom));
+		}
+		public static RectangleF ZoomFromTo(this RectangleF local,RectangleF source, RectangleF destination,bool reverseZoom=false)
+		{
+		    float srcRatio = source.Width / source.Height;
+		    float destRatio = destination.Width / destination.Height;
+			
+		    bool isWidthZoom=reverseZoom? srcRatio<destRatio : srcRatio>destRatio;
+		    float scale = isWidthZoom
+		        ? destination.Width / source.Width   // 按宽度缩放
+		        : destination.Height / source.Height; // 按高度缩放
+		
+		    float scaledWidth = source.Width * scale;
+		    float scaledHeight = source.Height * scale;
+		
+		    // 计算居中坐标（相对于目标矩形的左上角）
+		    float x = destination.Left + (destination.Width - scaledWidth) / 2;
+		    float y = destination.Top + (destination.Height - scaledHeight) / 2;
+		
+		    local.Width*=scale;
+		    local.Height*=scale;
+		    local.X-=source.X;
+		    local.Y-=source.Y;
+		    local.X*=scale;
+		    local.Y*=scale;
+		    local.X+=x;
+		    local.Y+=y;
+		    return local;
+		}
+		//deepseek generated function(modified)
+		public static RectangleF ZoomTo(this RectangleF source, RectangleF destination,bool reverseZoom=false)
+		{
+		    float srcRatio = source.Width / source.Height;
+		    float destRatio = destination.Width / destination.Height;
+		
+		    bool isWidthZoom=reverseZoom? srcRatio<destRatio : srcRatio>destRatio;
+		    float scale = isWidthZoom
+		        ? destination.Width / source.Width   // 按宽度缩放
+		        : destination.Height / source.Height; // 按高度缩放
+		
+		    float scaledWidth = source.Width * scale;
+		    float scaledHeight = source.Height * scale;
+		
+		    // 计算居中坐标（相对于目标矩形的左上角）
+		    float x = destination.Left + (destination.Width - scaledWidth) / 2;
+		    float y = destination.Top + (destination.Height - scaledHeight) / 2;
+		
+		    return new RectangleF(x, y, scaledWidth, scaledHeight);
+		}
+	}
+	
+	/*
 	public static class GraphicsExt
 	{
 		[DllImport("gdi32")]

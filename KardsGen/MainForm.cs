@@ -21,7 +21,11 @@ namespace KardsGen
 	public partial class MainForm : Form
 	{
 		CardGen gen=new CardGen();
-		
+		Pen pen=new Pen(Color.Red);
+		Rectangle range=Rectangle.Empty;
+		Rectangle showRange=Rectangle.Empty;
+		bool isCliped=false;
+		bool isClipping=false;
 		void Init()
 		{
 			InitializeComponent();
@@ -45,21 +49,61 @@ namespace KardsGen
 		
 		void UpdatePreview()
 		{
-			//if(pictureBoxPreview.Image!=null)pictureBoxPreview.Image.Dispose();
-			//Image preview=pictureBoxPreview.Image;
-			//pictureBoxPreview.Image=null;
-			//if(preview!=null)preview.Dispose();
 			pictureBoxPreview.Image=gen.Generate();
 		}
 		void UpdatePic(string picPath)
 		{
+			isCliped=false;
 			if(pictureBoxImgView.Image!=null)pictureBoxImgView.Image=null;
 			if(gen.pic!=null)gen.pic.Dispose();
-			gen.pic=ImageExt.CopyFromFile(picPath);
-			//Image.FromFile(picPath);
-			pictureBoxImgView.Image=gen.pic;
+			pictureBoxImgView.Image=ImageExt.CopyFromFile(picPath);
+			//gen.pic=ImageExt.CopyFromImage(pictureBoxImgView.Image);
+			if(range!=Rectangle.Empty)
+			{
+				isCliped=true;
+				gen.pic=ImageClip.GetClipedImage(pictureBoxImgView.Image,range);
+			}
+			else gen.pic=pictureBoxImgView.Image;
 			UpdatePreview();
 			//pictureBoxPreview.Image=gen.Generate();
+		}
+		DialogResult OpenPic()
+		{
+			using (OpenFileDialog open = new OpenFileDialog())
+			{
+				/*
+				ImageFormat
+					.Bmp
+					.Emf
+					.Exif
+					.Gif
+					.Icon
+					.Jpeg
+					.Png
+					.Tiff
+					.Wmf
+				*/
+				open.Filter=
+					"Portable NetWork Graphics (*.png)|*.png"+
+					"|Joint Photographic Experts Group (*.jpg)|*.jpg"+
+					"|Bitmap File (*.bmp)|*.bmp"+
+					"|All Files (*.*)|*.*"
+				;
+				open.RestoreDirectory=true;
+				var ret=open.ShowDialog();
+				if(ret==DialogResult.OK)
+				{
+					UpdatePic(open.FileName);
+				}
+				else 
+				{
+					pictureBoxImgView.Image=null;
+					if(gen.pic!=null)gen.pic.Dispose();
+					gen.pic=null;
+					UpdatePreview();
+				}
+				return ret;
+			}
 		}
 		
 		
@@ -79,14 +123,6 @@ namespace KardsGen
 				.GetData(DataFormats.FileDrop)
 			)[0];
 			UpdatePic(path);
-			/*
-			if(gen.pic!=null)gen.pic.Dispose();
-			if(pictureBoxImgView.Image!=null)pictureBoxImgView.Image.Dispose();
-			gen.pic=Image.FromFile(path);
-			UpdatePreview();
-			*/
-			//MessageBox.Show(path);
-			//LoadPath(path);
 		}
 		
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
@@ -171,10 +207,8 @@ namespace KardsGen
 					"|All Files (*.*)|*.*"
 				;
 				save.RestoreDirectory=true;
-				//save.FileName="mergedimage.png";
 				if(save.ShowDialog()==DialogResult.OK)
 				{
-					//MessageBox.Show(save.FileName);
 					try
 					{
 						gen.resultBmp.SaveAutoFormat(save.FileName);
@@ -185,15 +219,6 @@ namespace KardsGen
 						MessageBox.Show(ex.Message,"保存失败",MessageBoxButtons.OK,MessageBoxIcon.Error);
 						//throw;
 					}
-					/*
-					if((file=save.OpenFile())!=null)
-					{
-						var content=File.ReadAllBytes(Path.Combine(stack.dir,"mergedimage.png"));
-						file.Write(content,0,content.Length);
-						file.Close();
-					}
-					MessageBox.Show("Picture saved!","Save Picture");
-					*/
 				}
 			}
 		}
@@ -210,43 +235,66 @@ namespace KardsGen
 			UpdatePreview();
 		}
 		
+		
+		ImageClip ic;
 		void PictureBoxImgViewClick(object sender, EventArgs e)
 		{
-			using (OpenFileDialog open = new OpenFileDialog())
+			if(isClipping)
 			{
-				/*
-				ImageFormat
-					.Bmp
-					.Emf
-					.Exif
-					.Gif
-					.Icon
-					.Jpeg
-					.Png
-					.Tiff
-					.Wmf
-				*/
-				open.Filter=
-					"Portable NetWork Graphics (*.png)|*.png"+
-					"|Joint Photographic Experts Group (*.jpg)|*.jpg"+
-					"|Bitmap File (*.bmp)|*.bmp"+
-					"|All Files (*.*)|*.*"
-				;
-				open.RestoreDirectory=true;
-				
-				if(open.ShowDialog()==DialogResult.OK)
-				{
-					UpdatePic(open.FileName);
-				}
-				else 
-				{
-					pictureBoxImgView.Image=null;
-					if(gen.pic!=null)gen.pic.Dispose();
-					gen.pic=null;
-					UpdatePreview();
-				}
+				if(ic!=null)ic.Activate();
+				return;
 			}
+			if(((MouseEventArgs)e).Button== MouseButtons.Left)
+			{
+				OpenPic();
+			}
+			else if(((MouseEventArgs)e).Button== MouseButtons.Right)
+			{
+				if(((PictureBox)sender).Image==null)
+				{
+					if(OpenPic()!=DialogResult.OK)return;
+				}
+				
+				isClipping=true;
+				ic=new ImageClip(((PictureBox)sender).Image,range);
+				
+				ic.Closed+=(csender,ce)=>{
+					ic=null;
+					isClipping=false;
+				};
+				ic.SetRect+=(r)=>{
+					//clip range preview
+					range=r;
+					showRange=ImageClip.FromImgToBox(((PictureBox)sender),range);
+					((Control)sender).Invalidate();
+					//update pic
+					var deimg=gen.pic;
+					if(isCliped)if(deimg!=null)deimg.Dispose();
+					if(r!=Rectangle.Empty)
+					{
+						gen.pic=ImageClip.GetClipedImage(((PictureBox)sender).Image,range);
+						UpdatePreview();
+						isCliped=true;
+					}
+					else
+					{
+						gen.pic=((PictureBox)sender).Image;
+						UpdatePreview();
+						isCliped=false;
+					}
+				};
+				ic.Show();
+				
+			}
+			
+			
+			
 		}
 		
+		
+		void PictureBoxImgViewPaint(object sender, PaintEventArgs e)
+		{
+			e.Graphics.DrawRectangle(pen,showRange);
+		}
 	}
 }
