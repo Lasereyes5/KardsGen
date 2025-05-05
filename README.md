@@ -1,5 +1,6 @@
 # KardsGen
 Kards游戏风格卡牌生成器
+
 使用本工具前请先确认[免责声明](免责声明.md)的内容，若使用本工具则视为同意免责声明
 
 ![卡牌生成器](Cards/卡牌生成器.png)
@@ -36,6 +37,10 @@ Kards游戏风格卡牌生成器
 - 可将多个卡牌作为卡组保存成文件并能读取
 	- （有点不像是卡牌生成器该干的事）
 
+### 构建
+- SharpDevelop（或直接使用[构建脚本](build.bat)）
+	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)
+
 ### 素材
 - 图片素材取自Kards官网各卡牌
 - 图标素材取自Kards官网网页元素矢量图，图标微调白色，使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
@@ -50,3 +55,4 @@ Kards游戏风格卡牌生成器
 	- 作者比较懒，贴图和文本位置没啥大问题就懒得再调整
 	- 字体使用了系统内置的Microsoft YaHei UI（微软雅黑），实际上思源黑体最为还原
 - 目前无法添加自制图标
+- 无法添加粗体文本
