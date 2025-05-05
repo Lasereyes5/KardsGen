@@ -38,8 +38,8 @@ Kards游戏风格卡牌生成器
 	- （有点不像是卡牌生成器该干的事）
 
 ### 构建
-- SharpDevelop（或直接使用[构建脚本](build.bat)）
-	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)
+- .NET SDK
+	- 在项目目录打开控制台窗口，输入`dotnet msbuild /p:Configuration=Release /p:Platform=x64`（或直接使用[构建脚本](build.bat)）
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
