@@ -47,6 +47,7 @@ Kards游戏风格卡牌生成器
 - 模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
 
 ### 细节缺陷
+- 空军卡牌没有其特殊国家图标
 - 数值背景板和类型图标边框因取自svg矢量图素材，全部为纯色，实际上应该是卡面背景图
 - 无法制作闪卡
 - 根据便利性作出的妥协
