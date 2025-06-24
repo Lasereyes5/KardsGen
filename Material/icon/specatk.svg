@@ -2,7 +2,7 @@
 	<circle cx="60" cy="60" r="44"
 	fill="#383b35"
 	stroke="#cbc9b0"
-	stroke-width="6"
+	stroke-width="7"
 	/>
 	<line x1="16" y1="60" x2="26" y2="60"
 	stroke="#cbc9b0"

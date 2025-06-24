@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-32 -6 64 64">
+<rect
+	width="36"
+	height="36"
+	fill="#303132"
+	
+	transform="rotate(45)"
+	
+	stroke="#cacfbe"
+	stroke-width="5.75"
+/>
+</svg>

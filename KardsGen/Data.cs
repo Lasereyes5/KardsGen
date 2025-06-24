@@ -30,7 +30,7 @@ namespace KardsGen
 	};
 	public enum Rarity
 	{
-		Standard,Limited,Special,Elite
+		Standard,Limited,Special,Elite,None
 	};
 	public enum Nation
 	{
@@ -43,8 +43,26 @@ namespace KardsGen
 		Italy,
 		Poland,
 		Finland,
+		Neutral,
 		
-		None
+		Custom
+	};
+	public enum Set
+	{
+		Base,
+		Allegiance,
+		Theaters,
+		Breakthrough,
+		Legions,
+		World,
+		Brothers,
+		Winter,
+		Covert,
+		Blood,
+		Naval,
+		FanMade,
+		
+		Custom
 	};
 	public static class TextData
 	{
@@ -62,7 +80,9 @@ namespace KardsGen
 			"普通",
 			"限定",
 			"特殊",
-			"精英"
+			"精英",
+			
+			"衍生"
 		};
 		public static string[] NationText=new string[] {
 			"苏联",
@@ -74,8 +94,25 @@ namespace KardsGen
 			"意大利",
 			"波兰",
 			"芬兰",
+			"中立",
 			
-			"无"
+			"自定义"
+		};
+		public static string[] SetText=new string[] {
+			"基础",
+			"忠诚",
+			"战区",
+			"突破",
+			"军团",
+			"世纪大战",
+			"战友",
+			"冬季战争",
+			"秘密行动",
+			"血与铁",
+			"海战",
+			"同人创作",
+			
+			"自定义"
 		};
 	}
 }

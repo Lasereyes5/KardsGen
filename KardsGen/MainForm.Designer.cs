@@ -49,8 +49,14 @@ namespace KardsGen
 			this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
 			this.pictureBoxImgView = new System.Windows.Forms.PictureBox();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
+			this.pictureBoxNationView = new System.Windows.Forms.PictureBox();
+			this.pictureBoxSetView = new System.Windows.Forms.PictureBox();
+			this.checkBoxIsDark = new System.Windows.Forms.CheckBox();
+			this.comboBoxSet = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImgView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNationView)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetView)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// textBoxDeploymentCost
@@ -63,7 +69,7 @@ namespace KardsGen
 			// 
 			// textBoxOperationCost
 			// 
-			this.textBoxOperationCost.Location = new System.Drawing.Point(57, 13);
+			this.textBoxOperationCost.Location = new System.Drawing.Point(46, 13);
 			this.textBoxOperationCost.Name = "textBoxOperationCost";
 			this.textBoxOperationCost.Size = new System.Drawing.Size(21, 21);
 			this.textBoxOperationCost.TabIndex = 1;
@@ -71,7 +77,7 @@ namespace KardsGen
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(41, 13);
+			this.label1.Location = new System.Drawing.Point(36, 13);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(10, 21);
 			this.label1.TabIndex = 2;
@@ -82,9 +88,9 @@ namespace KardsGen
 			// 
 			this.comboBoxNation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxNation.FormattingEnabled = true;
-			this.comboBoxNation.Location = new System.Drawing.Point(84, 14);
+			this.comboBoxNation.Location = new System.Drawing.Point(73, 13);
 			this.comboBoxNation.Name = "comboBoxNation";
-			this.comboBoxNation.Size = new System.Drawing.Size(69, 20);
+			this.comboBoxNation.Size = new System.Drawing.Size(68, 20);
 			this.comboBoxNation.TabIndex = 3;
 			this.comboBoxNation.SelectedIndexChanged += new System.EventHandler(this.ComboBoxNationSelectedIndexChanged);
 			// 
@@ -102,13 +108,13 @@ namespace KardsGen
 			this.comboBoxType.FormattingEnabled = true;
 			this.comboBoxType.Location = new System.Drawing.Point(41, 148);
 			this.comboBoxType.Name = "comboBoxType";
-			this.comboBoxType.Size = new System.Drawing.Size(86, 20);
+			this.comboBoxType.Size = new System.Drawing.Size(100, 20);
 			this.comboBoxType.TabIndex = 5;
 			this.comboBoxType.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTypeSelectedIndexChanged);
 			// 
 			// textBoxdefense
 			// 
-			this.textBoxdefense.Location = new System.Drawing.Point(133, 148);
+			this.textBoxdefense.Location = new System.Drawing.Point(147, 148);
 			this.textBoxdefense.Name = "textBoxdefense";
 			this.textBoxdefense.Size = new System.Drawing.Size(21, 21);
 			this.textBoxdefense.TabIndex = 6;
@@ -118,7 +124,7 @@ namespace KardsGen
 			// 
 			this.textBoxName.Location = new System.Drawing.Point(14, 175);
 			this.textBoxName.Name = "textBoxName";
-			this.textBoxName.Size = new System.Drawing.Size(140, 21);
+			this.textBoxName.Size = new System.Drawing.Size(127, 21);
 			this.textBoxName.TabIndex = 7;
 			this.textBoxName.TextChanged += new System.EventHandler(this.TextBoxNameTextChanged);
 			// 
@@ -126,16 +132,16 @@ namespace KardsGen
 			// 
 			this.comboBoxRarity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.comboBoxRarity.FormattingEnabled = true;
-			this.comboBoxRarity.Location = new System.Drawing.Point(41, 273);
+			this.comboBoxRarity.Location = new System.Drawing.Point(13, 273);
 			this.comboBoxRarity.Name = "comboBoxRarity";
-			this.comboBoxRarity.Size = new System.Drawing.Size(86, 20);
+			this.comboBoxRarity.Size = new System.Drawing.Size(50, 20);
 			this.comboBoxRarity.TabIndex = 9;
 			this.comboBoxRarity.SelectedIndexChanged += new System.EventHandler(this.ComboBoxRaritySelectedIndexChanged);
 			// 
 			// pictureBoxPreview
 			// 
 			this.pictureBoxPreview.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBoxPreview.Location = new System.Drawing.Point(160, 13);
+			this.pictureBoxPreview.Location = new System.Drawing.Point(175, 13);
 			this.pictureBoxPreview.Name = "pictureBoxPreview";
 			this.pictureBoxPreview.Size = new System.Drawing.Size(200, 280);
 			this.pictureBoxPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -146,9 +152,9 @@ namespace KardsGen
 			// pictureBoxImgView
 			// 
 			this.pictureBoxImgView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBoxImgView.Location = new System.Drawing.Point(12, 40);
+			this.pictureBoxImgView.Location = new System.Drawing.Point(14, 40);
 			this.pictureBoxImgView.Name = "pictureBoxImgView";
-			this.pictureBoxImgView.Size = new System.Drawing.Size(140, 102);
+			this.pictureBoxImgView.Size = new System.Drawing.Size(154, 102);
 			this.pictureBoxImgView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBoxImgView.TabIndex = 11;
 			this.pictureBoxImgView.TabStop = false;
@@ -160,16 +166,61 @@ namespace KardsGen
 			this.textBoxDescription.Location = new System.Drawing.Point(14, 202);
 			this.textBoxDescription.Multiline = true;
 			this.textBoxDescription.Name = "textBoxDescription";
-			this.textBoxDescription.Size = new System.Drawing.Size(140, 65);
+			this.textBoxDescription.Size = new System.Drawing.Size(154, 65);
 			this.textBoxDescription.TabIndex = 12;
 			this.textBoxDescription.TextChanged += new System.EventHandler(this.TextBoxDescriptionTextChanged);
+			// 
+			// pictureBoxNationView
+			// 
+			this.pictureBoxNationView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBoxNationView.Location = new System.Drawing.Point(147, 13);
+			this.pictureBoxNationView.Name = "pictureBoxNationView";
+			this.pictureBoxNationView.Size = new System.Drawing.Size(21, 21);
+			this.pictureBoxNationView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBoxNationView.TabIndex = 13;
+			this.pictureBoxNationView.TabStop = false;
+			this.pictureBoxNationView.Click += new System.EventHandler(this.PictureBoxNationViewClick);
+			// 
+			// pictureBoxSetView
+			// 
+			this.pictureBoxSetView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBoxSetView.Location = new System.Drawing.Point(147, 272);
+			this.pictureBoxSetView.Name = "pictureBoxSetView";
+			this.pictureBoxSetView.Size = new System.Drawing.Size(21, 21);
+			this.pictureBoxSetView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBoxSetView.TabIndex = 14;
+			this.pictureBoxSetView.TabStop = false;
+			this.pictureBoxSetView.Click += new System.EventHandler(this.PictureBoxSetViewClick);
+			// 
+			// checkBoxIsDark
+			// 
+			this.checkBoxIsDark.Location = new System.Drawing.Point(151, 176);
+			this.checkBoxIsDark.Name = "checkBoxIsDark";
+			this.checkBoxIsDark.Size = new System.Drawing.Size(17, 20);
+			this.checkBoxIsDark.TabIndex = 15;
+			this.checkBoxIsDark.UseVisualStyleBackColor = true;
+			this.checkBoxIsDark.CheckedChanged += new System.EventHandler(this.CheckBox1CheckedChanged);
+			// 
+			// comboBoxSet
+			// 
+			this.comboBoxSet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.comboBoxSet.FormattingEnabled = true;
+			this.comboBoxSet.Location = new System.Drawing.Point(68, 273);
+			this.comboBoxSet.Name = "comboBoxSet";
+			this.comboBoxSet.Size = new System.Drawing.Size(73, 20);
+			this.comboBoxSet.TabIndex = 16;
+			this.comboBoxSet.SelectedIndexChanged += new System.EventHandler(this.ComboBoxSetSelectedIndexChanged);
 			// 
 			// MainForm
 			// 
 			this.AllowDrop = true;
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(372, 306);
+			this.ClientSize = new System.Drawing.Size(389, 302);
+			this.Controls.Add(this.comboBoxSet);
+			this.Controls.Add(this.checkBoxIsDark);
+			this.Controls.Add(this.pictureBoxSetView);
+			this.Controls.Add(this.pictureBoxNationView);
 			this.Controls.Add(this.textBoxDescription);
 			this.Controls.Add(this.pictureBoxImgView);
 			this.Controls.Add(this.pictureBoxPreview);
@@ -186,13 +237,17 @@ namespace KardsGen
 			this.Name = "MainForm";
 			this.Text = "KardsGen";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
-			this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainFormDragDrop);
-			this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainFormDragEnter);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImgView)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNationView)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBoxSetView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ComboBox comboBoxSet;
+		private System.Windows.Forms.CheckBox checkBoxIsDark;
+		private System.Windows.Forms.PictureBox pictureBoxSetView;
+		private System.Windows.Forms.PictureBox pictureBoxNationView;
 		private System.Windows.Forms.TextBox textBoxDescription;
 		private System.Windows.Forms.PictureBox pictureBoxImgView;
 		private System.Windows.Forms.PictureBox pictureBoxPreview;
