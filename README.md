@@ -5,11 +5,12 @@ Kards游戏风格卡牌生成器
 
 ![卡牌生成器](Cards/卡牌生成器.png)
 
-使用SharpDevelop编写，整改了项目文件用.net sdk编译，不过会报判空警告。
+使用SharpDevelop编写，所以依赖.net framework（一般windows系统都有预装）
 
 介于本人恶趣味，我还把项目介绍写成了[论文形式项目介绍](论文形式项目介绍.md)，欢迎大家前去赤石盒袅，能赤完的是这个👍。
 ~~这东西是我在毕业季做出来的，所以四舍五入这个项目也能算是我的毕业设计。~~
 
+（可以整改项目文件用.net sdk编译，不过会报判空警告）
 
 代码写得很烂，不少位置参数硬编码，算个能用的东西
 
@@ -47,14 +48,8 @@ Kards游戏风格卡牌生成器
 	- （有点不像是卡牌生成器该干的事）
 
 ### 构建
-- .NET SDK
-	- 在项目目录打开控制台窗口，输入`dotnet msbuild /p:Configuration=Release /p:Platform=x64`（或直接使用[构建脚本](build.bat)）
-
-可以使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)进行裁剪
-- 如果不使用或无法使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)，可以换个windows特有的土方法：运行程序并尝试使用一些功能，同时尝试删除程序的所有文件。
-	- 原理：被程序调用到的程序集就会被文件锁给锁住，无法删除，就这样自动清掉了未调用的程序集。（可以复制一份裁剪过的程序，再把回收站里刚才删掉的程序集还原，避免积攒垃圾文件）
-	- 为以防万一，可以把土方法裁剪过后的程序覆盖到先前使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)裁剪的程序目录里，以保证不缺少文件。
-
+- SharpDevelop（或直接使用[构建脚本](build.bat)）
+	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
