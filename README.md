@@ -58,7 +58,7 @@ Kards游戏风格卡牌生成器
 	- （显示范围有问题的svg已通过viewBox进行修正，无需再修改内部元素，在[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)中调整尺寸后即可直接导出）
 - 模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
 
-### 细节缺陷
+### 项目缺陷
 - 只能生成普通大小的卡牌图片(500×702)，卡牌原始大小应为1448×2034
 - 空军卡牌没有其特殊国家图标
 - 数值背景板和类型图标边框因取自svg矢量图素材，全部为纯色，实际上应该是卡面背景图
