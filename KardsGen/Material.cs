@@ -31,6 +31,18 @@ namespace KardsGen
 		public static Image[] nationIcon=GetNationIcons();
 		public static Image[] rarityIcon=GetRarityIcons();
 		public static Image[] typeIcon=GetTypeIcons();
+		public static Image[] setIcon=GetSetIcons();
+		
+		public const uint 
+			defaultDark=0xff50514C,
+			defaultLight=0xffC2C8B3,
+			defaultColorActivate=0xffCE8A31;
+		
+		public const int
+			nationCount=10,
+			rarityCount=4,
+			typeCount=8,
+			setCount=12;
 		
 		static Image GetAtteckBoard()
 		{
@@ -40,8 +52,8 @@ namespace KardsGen
 		}
 		static Image[] GetRarityIcons()
 		{
-			Image[] imgs=new Image[4];
-			for (int i = 0; i < 4; i++)
+			Image[] imgs=new Image[rarityCount];
+			for (int i = 0; i < rarityCount; i++)
 			{
 				imgs[i]=(Image)(resources.GetObject( ((Rarity)i).ToString() ));
 			}
@@ -49,8 +61,8 @@ namespace KardsGen
 		}
 		static Image[] GetTypeIcons()
 		{
-			Image[] imgs=new Image[8];
-			for (int i = 1; i < 8; i++)
+			Image[] imgs=new Image[typeCount];
+			for (int i = 1; i < typeCount; i++)
 			{
 				imgs[i]=(Image)(resources.GetObject( ((Type)i).ToString() ));
 			}
@@ -58,20 +70,29 @@ namespace KardsGen
 		}
 		static Image[] GetNationIcons()
 		{
-			Image[] nationsArr=new Image[(int)Nation.None];
-			for (int i = 0; i < (int)Nation.None; i++)
+			Image[] nationsArr=new Image[nationCount];
+			for (int i = 0; i < nationCount; i++)
 			{
 				nationsArr[i]=(Image)(resources.GetObject( ((Nation)i).ToString() ));
 			}
 			return nationsArr;
 			//nations[0]=((Image)(resources.GetObject("USA")));
 		}
+		static Image[] GetSetIcons()
+		{
+			Image[] imgs=new Image[setCount];
+			for (int i = 0; i < setCount; i++)
+			{
+				imgs[i]=(Image)(resources.GetObject( ((Set)i).ToString() ));
+			}
+			return imgs;
+		}
 		
 		public static Color GetNationColor(Nation nation)
 		{
 			switch (nation)
 			{
-				case Nation.None:return ColorFix.FromArgb(0xff50514c);
+				case Nation.Custom:return ColorFix.FromArgb(0xff50514c);
 				case Nation.Soviet:return ColorFix.FromArgb(0xff665644);
 				case Nation.USA:return ColorFix.FromArgb(0xff646c4e);
 				case Nation.Japan:return ColorFix.FromArgb(0xffa08241);
@@ -81,29 +102,11 @@ namespace KardsGen
 				case Nation.Italy:return ColorFix.FromArgb(0xff69696a);
 				case Nation.Poland:return ColorFix.FromArgb(0xff696353);
 				case Nation.Finland:return ColorFix.FromArgb(0xffbdbdad);
+				case Nation.Neutral:return ColorFix.FromArgb(0xff3b3b43);
 				//default:throw new Exception("Invalid value for Nation");
 			}
 			return Color.Empty;
 		}
-		public static Point GetNationPosition(Nation nation)
-		{
-			switch (nation)
-			{
-				case Nation.None:return Point.Empty;
-				case Nation.Soviet:return new Point(416,20);
-				case Nation.USA:return new Point(423,26);
-				case Nation.Japan:return new Point(425,27);
-				case Nation.Germany:return new Point(423,25);
-				case Nation.Britain:return new Point(425,27);
-				case Nation.France:return new Point(425,26);
-				case Nation.Italy:return new Point(425,27);
-				case Nation.Poland:return new Point(425,28);
-				case Nation.Finland:return new Point(425,27);
-				//default:throw new Exception("Invalid value for Nation");
-			}
-			return Point.Empty;
-		}
-		
 		public static Point GetTypePosition(Type type)
 		{
 			switch (type) {
@@ -127,6 +130,10 @@ namespace KardsGen
 			foreach(var img in typeIcon)
 			{
 				if(img!=null)img.Dispose();
+			}
+			foreach(var img in setIcon)
+			{
+				img.Dispose();
 			}
 			
 			frameImg.Dispose();

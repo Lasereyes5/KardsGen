@@ -29,13 +29,20 @@ namespace KardsGen
 		void Init()
 		{
 			InitializeComponent();
-			comboBoxNation.Items.AddRange(TextData.NationText);
+			EnableDragDrop(pictureBoxImgView,(s)=>UpdatePic(s));
+			EnableDragDrop(pictureBoxNationView,(s)=>UpdateNation(s));
+			EnableDragDrop(pictureBoxSetView,(s)=>UpdateSet(s));
+			pictureBoxNationView.BackColor=gen.nationColor;
+			
 			comboBoxType.Items.AddRange(TextData.TypeText);
 			comboBoxRarity.Items.AddRange(TextData.RarityText);
+			comboBoxNation.Items.AddRange(TextData.NationText);
+			comboBoxSet.Items.AddRange(TextData.SetText);
 			
-			comboBoxNation.SelectedIndex=(int)Nation.None;
 			comboBoxType.SelectedIndex=(int)Type.HQ;
 			comboBoxRarity.SelectedIndex=(int)Rarity.Standard;
+			comboBoxNation.SelectedIndex=(int)Nation.Custom;
+			comboBoxSet.SelectedIndex=(int)Set.FanMade;
 		}
 		public MainForm(string path)
 		{
@@ -67,7 +74,75 @@ namespace KardsGen
 			UpdatePreview();
 			//pictureBoxPreview.Image=gen.Generate();
 		}
+		void UpdateNation(string picPath)
+		{
+			//if(pictureBoxNationPreview.Image!=null)pictureBoxNationPreview.Image=null;
+			if(gen.nationIcon!=null)gen.nationIcon.Dispose();
+			pictureBoxNationView.Image=ImageExt.CopyFromFile(picPath);
+			gen.nationIcon=pictureBoxNationView.Image;
+			UpdatePreview();
+		}
+		void UpdateSet(string picPath)
+		{
+			//if(pictureBoxNationPreview.Image!=null)pictureBoxNationPreview.Image=null;
+			if(gen.setIcon!=null)gen.setIcon.Dispose();
+			pictureBoxSetView.Image=ImageExt.CopyFromFile(picPath);
+			gen.setIcon=pictureBoxSetView.Image;
+			UpdatePreview();
+		}
+		
 		DialogResult OpenPic()
+		{
+			string s=null;
+			var ret=OpenImage(ref s);
+			if(ret==DialogResult.OK)
+			{
+				UpdatePic(s);
+			}
+			else 
+			{
+				pictureBoxImgView.Image=null;
+				if(gen.pic!=null)gen.pic.Dispose();
+				gen.pic=null;
+				UpdatePreview();
+			}
+			return ret;
+		}
+		DialogResult OpenNationPic()
+		{
+			string s=null;
+			var ret=OpenImage(ref s);
+			if(ret==DialogResult.OK)
+			{
+				UpdateNation(s);
+			}
+			else 
+			{
+				pictureBoxNationView.Image=null;
+				if(gen.nationIcon!=null)gen.nationIcon.Dispose();
+				gen.nationIcon=null;
+				UpdatePreview();
+			}
+			return ret;
+		}
+		DialogResult OpenSetPic()
+		{
+			string s=null;
+			var ret=OpenImage(ref s);
+			if(ret==DialogResult.OK)
+			{
+				UpdateSet(s);
+			}
+			else 
+			{
+				pictureBoxSetView.Image=null;
+				if(gen.setIcon!=null)gen.setIcon.Dispose();
+				gen.setIcon=null;
+				UpdatePreview();
+			}
+			return ret;
+		}
+		DialogResult OpenImage(ref string s)
 		{
 			using (OpenFileDialog open = new OpenFileDialog())
 			{
@@ -91,31 +166,40 @@ namespace KardsGen
 				;
 				open.RestoreDirectory=true;
 				var ret=open.ShowDialog();
-				if(ret==DialogResult.OK)
-				{
-					UpdatePic(open.FileName);
-				}
-				else 
-				{
-					pictureBoxImgView.Image=null;
-					if(gen.pic!=null)gen.pic.Dispose();
-					gen.pic=null;
-					UpdatePreview();
-				}
+				s=open.FileName;
 				return ret;
 			}
 		}
 		
-		
-		void MainFormDragEnter(object sender, DragEventArgs e)
+		public delegate void StrGeter(string r);
+		void EnableDragDrop(Control c,StrGeter gs)
+		{
+			c.AllowDrop=true;
+			c.DragEnter+= DragEnterFunc;
+			c.DragDrop+=(sender,e)=>{
+				string path = (
+					(string[])e
+					.Data
+					.GetData(DataFormats.FileDrop)
+				)[0];
+				gs.Invoke(path);
+			};
+			
+		}
+		void EnableDragDrop(Control c)
+		{
+			c.AllowDrop=true;
+			c.DragEnter+= DragEnterFunc;
+		}
+		void DragEnterFunc(object sender, DragEventArgs e)
 		{
 			if (e.Data.GetDataPresent(DataFormats.FileDrop))
 				e.Effect = DragDropEffects.All;			//重要代码：表明是所有类型的数据，比如文件路径
 			else
 				e.Effect = DragDropEffects.None;
 		}
-		
-		void MainFormDragDrop(object sender, DragEventArgs e)
+		/*
+		void PictureBoxImgViewDragDrop(object sender, DragEventArgs e)
 		{
 			string path = (
 				(string[])e
@@ -124,7 +208,7 @@ namespace KardsGen
 			)[0];
 			UpdatePic(path);
 		}
-		
+		*/
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			gen.Dispose();
@@ -168,12 +252,33 @@ namespace KardsGen
 		void ComboBoxNationSelectedIndexChanged(object sender, EventArgs e)
 		{
 			gen.nation=(Nation)((ComboBox)sender).SelectedIndex;
+			pictureBoxNationView.AllowDrop= gen.nation==Nation.Custom;
+			switch (gen.type) {
+				case Type.HQ:
+					checkBoxIsDark.Enabled=false;
+					break;
+				case Type.Order:goto case Type.HQ;
+				case Type.Countermeasure:goto case Type.HQ;
+				default:
+					checkBoxIsDark.Enabled= gen.nation==Nation.Custom;
+					break;
+			}
 			UpdatePreview();
 		}
 		
 		void ComboBoxTypeSelectedIndexChanged(object sender, EventArgs e)
 		{
 			gen.type=(Type)((ComboBox)sender).SelectedIndex;
+			switch (gen.type) {
+				case Type.HQ:
+					checkBoxIsDark.Enabled=false;
+					break;
+				case Type.Order:goto case Type.HQ;
+				case Type.Countermeasure:goto case Type.HQ;
+				default:
+					checkBoxIsDark.Enabled= gen.nation==Nation.Custom;
+					break;
+			}
 			UpdatePreview();
 		}
 		
@@ -295,6 +400,58 @@ namespace KardsGen
 		void PictureBoxImgViewPaint(object sender, PaintEventArgs e)
 		{
 			e.Graphics.DrawRectangle(pen,showRange);
+		}
+		
+		
+		
+		
+		
+		void PictureBoxNationViewClick(object sender, EventArgs e)
+		{
+			if(gen.nation!= Nation.Custom)return;
+			if(((MouseEventArgs)e).Button== MouseButtons.Left)
+			{
+				OpenNationPic();
+			}
+			else if(((MouseEventArgs)e).Button== MouseButtons.Right)
+			{
+				using(var cdl=new ColorDialog())
+				{
+					cdl.AllowFullOpen=true;
+					cdl.FullOpen=true;
+					//int[] colors=(int[3]){(int)Material.defaultDark,(int)Material.defaultLight,(int)Material.defaultColorActivate};
+					cdl.CustomColors=new int[3]{
+						ColorFix.FromArgb(Material.defaultDark).ToArgb(),
+						ColorFix.FromArgb(Material.defaultLight).ToArgb(),
+						ColorFix.FromArgb(Material.defaultColorActivate).ToArgb()
+					};
+					cdl.Color=gen.nationColor;
+					cdl.ShowDialog();
+					gen.nationColor=cdl.Color;
+					pictureBoxNationView.BackColor=gen.nationColor;
+					UpdatePreview();
+				}
+			}
+		}
+		
+		
+		void CheckBox1CheckedChanged(object sender, EventArgs e)
+		{
+			gen.isDarkName=((CheckBox)sender).Checked;
+			UpdatePreview();
+		}
+		
+		void ComboBoxSetSelectedIndexChanged(object sender, EventArgs e)
+		{
+			gen.set=(Set)((ComboBox)sender).SelectedIndex;
+			UpdatePreview();
+		}
+		
+		void PictureBoxSetViewClick(object sender, EventArgs e)
+		{
+			if(gen.set!= Set.Custom)return;
+			OpenSetPic();
+			UpdatePreview();
 		}
 	}
 }

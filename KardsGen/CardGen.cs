@@ -24,6 +24,12 @@ namespace KardsGen
 		public Type type;
 		public Rarity rarity;
 		public Nation nation;
+		public Set set;
+		public Image nationIcon;
+		public Color nationColor=ColorFix.FromArgb(0xff50514c);
+		public Image setIcon;
+		
+		public bool isDarkName=false;
 		public string name;
 		public string description;
 		
@@ -38,28 +44,7 @@ namespace KardsGen
 		public int operationCost=0;
 		public int atteck=0;
 		public int defense=0;
-		/*
-		int _atteck=0;
-		int _defense=0;
-		public int Atteck
-		{
-			get {return _atteck;}
-			set {
-				if(value<0)_atteck=0;
-				else if(value>99)_atteck=99;
-				else _atteck=value;
-			}
-		}
-		public int Defense
-		{
-			get {return _defense;}
-			set {
-				if(value<0)_defense=0;
-				else if(value>99)_defense=99;
-				else _defense=value;
-			}
-		}
-		*/
+		
 		public CardGen()
 		{
 			resultBmp=new Bitmap(Material.frameImg.Width,Material.frameImg.Height);
@@ -104,13 +89,11 @@ namespace KardsGen
 			//or extra border
 			else DrawExtraBorder(g);
 			if(isUnit||isCmd)DrawKredit(g,isUnit);
-			if(nation!= Nation.None)
-			{
-				g.DrawImageUnscaled(Material.nationIcon[(int)nation],Material.GetNationPosition(nation));
-			}
+			DrawNation(g);
 			
 			DrawFrame(g);
-			if(isUnit||isCmd)DrawRarity(g);
+			if((isUnit||isCmd)&&rarity!=Rarity.None)DrawRarity(g);
+			if(isUnit||isCmd)DrawSet(g);
 			
 			DrawValue(g);
 			if(!isHQ)DrawType(g);
@@ -123,7 +106,7 @@ namespace KardsGen
 		
 		void DrawNameBar(Graphics g)
 		{
-			Brush b=new SolidBrush(Material.GetNationColor(nation));
+			Brush b=new SolidBrush(nation==Nation.Custom?nationColor:Material.GetNationColor(nation));
 			g.FillRectangle(b,98,13,390,86);
 			b.Dispose();
 			g.DrawImageUnscaled(Material.spliterImg__98_91,new Point(98,91));
@@ -135,6 +118,36 @@ namespace KardsGen
 		void DrawFrame(Graphics g)
 		{
 			g.DrawImageUnscaled(Material.frameImg,new Point(0,0));
+		}
+		void DrawNation(Graphics g)
+		{
+			Image img;
+			//g.DrawImageUnscaled(Material.nationIcon[(int)nation],Material.GetNationPosition(nation));
+			if(nation!=Nation.Custom)img=Material.nationIcon[(int)nation];
+			else img=nationIcon;
+			
+			if(img==null)return;
+			Point pos=new Point(//draw image at center (450,52)
+				450-img.Width/2,
+				52-img.Height/2
+			);
+			g.DrawImageUnscaled(img,pos);
+			
+		}
+		void DrawSet(Graphics g)
+		{
+			Image img;
+			//g.DrawImageUnscaled(Material.nationIcon[(int)nation],Material.GetNationPosition(nation));
+			if(set!=Set.Custom)img=Material.setIcon[(int)set];
+			else img=setIcon;
+			
+			if(img==null)return;
+			Point pos=new Point(//draw image at right bottom corner (490,690)
+				488-img.Width,
+				692-img.Height
+			);
+			g.DrawImageUnscaled(img,pos);
+			
 		}
 		void DrawRarity(Graphics g)
 		{
@@ -149,15 +162,15 @@ namespace KardsGen
 			if(dcstr.Length>1)//small K & small num
 			{
 				//draw K
-				DrawStr(g,"K",17,new PointF(80,25),0xffCE8A31);
-				//draw cost
-				DrawNum(g,depoymentCost,33,new PointF(42,24));
+				DrawStr(g,"K",17,new PointF(80,25),Material.defaultColorActivate);
+				//draw cost 33
+				DrawNum(g,depoymentCost,45,new PointF(42,12));
 				if(isUnit)DrawNum(g,operationCost,15,new PointF(80,50));
 			}
 			else 
 			{
 				//draw K
-				DrawStr(g,"K",22,new PointF(75,20),0xffCE8A31);
+				DrawStr(g,"K",22,new PointF(75,20),Material.defaultColorActivate);
 				//draw cost
 				DrawNum(g,depoymentCost,45,new PointF(40,12));
 				if(isUnit)DrawNum(g,operationCost,20,new PointF(75,50));
@@ -195,22 +208,42 @@ namespace KardsGen
 		{
 			switch (type) {
 				case Type.HQ:
-					DrawStr(g,name,30,new PointF(250,505),0xff50514C);
+					DrawStr(g,name,30,new PointF(250,505),Material.defaultDark);
 					break;
 				case Type.Order:goto case Type.HQ;
 				case Type.Countermeasure:goto case Type.HQ;
 				default:
-				DrawStr(g,name,35,new PointF(265,19),nation==Nation.Finland?0xff50514C:0xffC2C8B3);//dark title in finland unit
+					uint colorCode=Material.defaultLight;//light title by default
+					if(nation==Nation.Finland)
+					{
+						colorCode=Material.defaultDark;//dark title in finland unit
+					}
+					else if(nation==Nation.Custom&&isDarkName)
+					{
+						colorCode=Material.defaultDark;
+					}
+					DrawStr(g,name,35,new PointF(265,19),colorCode);
 					break;
 			}
-			DrawStrLight(g,description,25,new PointF(250,552),0xff50514C);
+			int lineCount=1;//,sizeOffset=0;
+			float printSize=25;
+			if(!string.IsNullOrEmpty(description))
+				foreach (var c in description)
+				{
+					if(c=='\n')lineCount++;
+				}
+			if(lineCount>2)printSize*=100f/(35*lineCount);
+			DrawStrLight(g,description,Convert.ToInt32(printSize),new PointF(250,552),Material.defaultDark);
 		}
 		
-		void DrawNum(Graphics g,int n,int size,PointF pos,uint colorCode=0xffC2C8B3)
+		void DrawNum(Graphics g,int n,int size,PointF pos,uint colorCode=Material.defaultLight)
 		{
-			DrawStr(g,n.ToString(),size,pos,colorCode);
+			string numStr=n.ToString();
+			float printSize=size*(float)Math.Pow(0.85,numStr.Length>0?numStr.Length-1:0);
+			pos.Y+=(size-printSize);
+			DrawStr(g,numStr,Convert.ToInt32(printSize),pos,colorCode);
 		}
-		void DrawStr(Graphics g,string s,int size,PointF pos,uint colorCode=0xffC2C8B3)
+		void DrawStr(Graphics g,string s,int size,PointF pos,uint colorCode=Material.defaultLight)
 		{
 			Font f=new Font(fontname,size,FontStyle.Bold);
 			Brush b=new SolidBrush(ColorFix.FromArgb(colorCode));
@@ -238,6 +271,7 @@ namespace KardsGen
 			resultG.Dispose();
 			resultBmp.Dispose();
 			if(pic!=null)pic.Dispose();
+			if(nationIcon!=null)nationIcon.Dispose();
 		}
 	}
 	
