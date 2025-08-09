@@ -29,6 +29,7 @@ namespace KardsGen
 		void Init()
 		{
 			InitializeComponent();
+			EnableDragDrop(pictureBoxPreview,(s)=>UpdateCard(s));
 			EnableDragDrop(pictureBoxImgView,(s)=>UpdatePic(s));
 			EnableDragDrop(pictureBoxNationView,(s)=>UpdateNation(s));
 			EnableDragDrop(pictureBoxSetView,(s)=>UpdateSet(s));
@@ -57,6 +58,34 @@ namespace KardsGen
 		void UpdatePreview()
 		{
 			pictureBoxPreview.Image=gen.Generate();
+		}
+		void UpdateCard(string cardPath)
+		{
+			gen.LoadIniFile(cardPath);
+			UpdateUI();
+			UpdatePreview();
+			
+		}
+		void UpdateUI()
+		{
+			comboBoxType.SelectedIndex=(int)gen.type;
+			comboBoxRarity.SelectedIndex=(int)gen.rarity;
+			comboBoxNation.SelectedIndex=(int)gen.nation;
+			comboBoxSet.SelectedIndex=(int)gen.set;
+			
+			textBoxDeploymentCost.Text=gen.depoymentCost.ToString();
+			textBoxOperationCost.Text=gen.operationCost.ToString();
+			textBoxAtteck.Text=gen.atteck.ToString();
+			textBoxdefense.Text=gen.defense.ToString();
+			textBoxName.Text=gen.name;
+			textBoxDescription.Text=gen.description;
+			
+			checkBoxIsDark.Checked=gen.isDarkName;
+			pictureBoxNationView.BackColor=gen.nationColor;
+			pictureBoxNationView.Image=gen.nationIcon;
+			pictureBoxSetView.Image=gen.setIcon;
+			pictureBoxImgView.Image=gen.pic;
+			isCliped=false;
 		}
 		void UpdatePic(string picPath)
 		{
@@ -167,6 +196,46 @@ namespace KardsGen
 				open.RestoreDirectory=true;
 				var ret=open.ShowDialog();
 				s=open.FileName;
+				return ret;
+			}
+		}
+		DialogResult SaveFile()
+		{
+			using (var save=new SaveFileDialog())
+			{
+				save.RestoreDirectory=true;
+				save.Filter=
+					"Initialization File (*.ini)|*.ini"+
+					"|All Files (*.*)|*.*"
+				;
+				var ret=save.ShowDialog();
+				if(ret== DialogResult.OK)
+					try {gen.SaveIniFile(save.FileName);}
+					catch(Exception ex)
+					{
+						MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+						throw ex;
+					}
+				return ret;
+			}
+		}
+		DialogResult LoadFile()
+		{
+			using (var open=new OpenFileDialog())
+			{
+				open.RestoreDirectory=true;
+				open.Filter=
+					"Initialization File (*.ini)|*.ini"+
+					"|All Files (*.*)|*.*"
+				;
+				var ret=open.ShowDialog();
+				if(ret== DialogResult.OK)
+					try {UpdateCard(open.FileName);}
+					catch(Exception ex)
+					{
+						MessageBox.Show(ex.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+						throw ex;
+					}
 				return ret;
 			}
 		}
@@ -290,42 +359,56 @@ namespace KardsGen
 		
 		void PictureBoxPreviewClick(object sender, EventArgs e)
 		{
-			using(var save=new SaveFileDialog())
+			if(((MouseEventArgs)e).Button== MouseButtons.Left)
 			{
-				//Stream file;
-				/*
-				ImageFormat
-					.Bmp
-					.Emf
-					.Exif
-					.Gif
-					.Icon
-					.Jpeg
-					.Png
-					.Tiff
-					.Wmf
-				*/
-				save.Filter=
-					"Portable NetWork Graphics (*.png)|*.png"+
-					"|Joint Photographic Experts Group (*.jpg)|*.jpg"+
-					"|Bitmap File (*.bmp)|*.bmp"+
-					"|All Files (*.*)|*.*"
-				;
-				save.RestoreDirectory=true;
-				if(save.ShowDialog()==DialogResult.OK)
+				using(var save=new SaveFileDialog())
 				{
-					try
+					//Stream file;
+					/*
+					ImageFormat
+						.Bmp
+						.Emf
+						.Exif
+						.Gif
+						.Icon
+						.Jpeg
+						.Png
+						.Tiff
+						.Wmf
+					*/
+					save.Filter=
+						"Portable NetWork Graphics (*.png)|*.png"+
+						"|Joint Photographic Experts Group (*.jpg)|*.jpg"+
+						"|Bitmap File (*.bmp)|*.bmp"+
+						"|All Files (*.*)|*.*"
+					;
+					save.RestoreDirectory=true;
+					if(save.ShowDialog()==DialogResult.OK)
 					{
-						gen.resultBmp.SaveAutoFormat(save.FileName);
-						MessageBox.Show("图片已保存!");
-					}
-					catch (ImageExt.UnsupportedImageFormat ex)
-					{
-						MessageBox.Show(ex.Message,"保存失败",MessageBoxButtons.OK,MessageBoxIcon.Error);
-						//throw;
+						try
+						{
+							gen.resultBmp.SaveAutoFormat(save.FileName);
+							MessageBox.Show("图片已保存!");
+						}
+						catch (ImageExt.UnsupportedImageFormat ex)
+						{
+							MessageBox.Show(ex.Message,"保存失败",MessageBoxButtons.OK,MessageBoxIcon.Error);
+							//throw;
+						}
 					}
 				}
+				
 			}
+			else if(((MouseEventArgs)e).Button== MouseButtons.Right)
+			{
+				if(SaveFile()== DialogResult.OK)MessageBox.Show("卡牌文件已保存!");;
+			}
+			
+		}
+		
+		void PictureBoxPreviewDoubleClick(object sender, EventArgs e)
+		{
+			LoadFile();
 		}
 		
 		void TextBoxNameTextChanged(object sender, EventArgs e)
@@ -453,5 +536,8 @@ namespace KardsGen
 			OpenSetPic();
 			UpdatePreview();
 		}
+		
+		
+		
 	}
 }
