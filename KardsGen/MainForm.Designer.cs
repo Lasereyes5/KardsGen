@@ -148,6 +148,7 @@ namespace KardsGen
 			this.pictureBoxPreview.TabIndex = 10;
 			this.pictureBoxPreview.TabStop = false;
 			this.pictureBoxPreview.Click += new System.EventHandler(this.PictureBoxPreviewClick);
+			this.pictureBoxPreview.DoubleClick += new System.EventHandler(this.PictureBoxPreviewDoubleClick);
 			// 
 			// pictureBoxImgView
 			// 

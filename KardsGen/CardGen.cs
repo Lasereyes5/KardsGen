@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using ClassExtensions;
 
@@ -266,6 +267,61 @@ namespace KardsGen
 			b.Dispose();
 		}
 		
+		public void SaveIniFile(string savePath)
+		{
+			var ini=new IniFile();
+			ini["Property"]["Type"]=TextData.TypeText[(int)type];
+			ini["Property"]["Rarity"]=TextData.RarityText[(int)rarity];
+			ini["Property"]["Nation"]=TextData.NationText[(int)nation];
+			ini["Property"]["Set"]=TextData.SetText[(int)set];
+			
+			ini["Info"]["DeploymentCost"]=depoymentCost.ToString();
+			ini["Info"]["OperationCost"]=operationCost.ToString();
+			ini["Info"]["Atteck"]=atteck.ToString();
+			ini["Info"]["Defense"]=defense.ToString();
+			ini["Info"]["Name"]=name;
+			ini["Info"]["Describe"]=stringExt.EscapeNewLines(description);
+			
+			ini["Custom"]["IsDarkName"]=isDarkName.ToString();
+			ini["Custom"]["NationColor"]=nationColor.ToArgb().ToString("X");
+			ini["Custom"]["NationIcon"]=nationIcon==null?null:nationIcon.ToBase64String(ImageFormat.Png);
+			ini["Custom"]["SetIcon"]=setIcon==null?null:setIcon.ToBase64String(ImageFormat.Png);
+			ini["Custom"]["Image"]=pic==null?null:pic.ToBase64String(ImageFormat.Png);
+			
+			ini.Save(savePath);
+		}
+		public void LoadIniFile(string loadPath)
+		{
+			var ini=new IniFile();
+			ini.Load(loadPath);
+			
+			type=stringExt.GetEnumFromArray<Type>(ini["Property"]["Type"].GetString(),TextData.TypeText,type);
+			rarity=stringExt.GetEnumFromArray<Rarity>(ini["Property"]["Rarity"].GetString(),TextData.RarityText,rarity);
+			nation=stringExt.GetEnumFromArray<Nation>(ini["Property"]["Nation"].GetString(),TextData.NationText,nation);
+			set=stringExt.GetEnumFromArray<Set>(ini["Property"]["Set"].GetString(),TextData.SetText,set);
+			
+			depoymentCost=ini["Info"]["DeploymentCost"].ToInt();
+			operationCost=ini["Info"]["OperationCost"].ToInt();
+			atteck=ini["Info"]["Atteck"].ToInt();
+			defense=ini["Info"]["Defense"].ToInt();
+			name=ini["Info"]["Name"].GetString();
+			description=stringExt.UnEscapeNewLines(ini["Info"]["Describe"].GetString());
+			
+			
+			isDarkName=ini["Custom"]["IsDarkName"].ToBool();
+			if( !string.IsNullOrEmpty(ini["Custom"]["NationColor"].GetString()) )
+				nationColor=Color.FromArgb( Convert.ToInt32(ini["Custom"]["NationColor"].GetString(),16) );
+			
+			if(nationIcon!=null)nationIcon.Dispose();
+			if(setIcon!=null)setIcon.Dispose();
+			if(pic!=null)pic.Dispose();
+			//nationIcon=null;
+			//setIcon=null;
+			//pic=null;
+			nationIcon=ImageExt.FromBase64String(ini["Custom"]["NationIcon"].GetString());
+			setIcon=ImageExt.FromBase64String(ini["Custom"]["SetIcon"].GetString());
+			pic=ImageExt.FromBase64String(ini["Custom"]["Image"].GetString());
+		}
 		public void Dispose()
 		{
 			resultG.Dispose();
