@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Friction - https://friction.graphics -->
+
+<svg viewBox="0 0 1200 1200" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 0)">
+  <g transform="translate(600 600)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g opacity="1" transform="translate(0 0)">
+       <ellipse ry="490" cx="0" stroke-width="15" stroke-linecap="round" fill="224, 230, 220" id="LargeCircle" stroke="0, 0, 0" cy="0" stroke-linejoin="round" rx="490"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(0 0)">
+  <g transform="translate(600 600)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g opacity="1" transform="translate(0 0)">
+       <ellipse ry="320" cx="0" stroke-width="20" stroke-linecap="round" fill="0, 105, 192" id="MediumCircle" stroke="none" cy="0" stroke-linejoin="round" rx="320"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(0 0)">
+  <g transform="translate(600 600)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g opacity="1" transform="translate(0 0)">
+       <ellipse ry="159" cx="0" stroke-width="20" stroke-linecap="round" fill="224, 230, 220" id="SmallCircle" stroke="none" cy="0" stroke-linejoin="round" rx="159"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs/>
+</svg>

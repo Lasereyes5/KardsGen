@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Friction - https://friction.graphics -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g transform="translate(511.783 491.564)">
+  <g transform="translate(128.359 158.477)">
+   <g transform="rotate(0)">
+    <g transform="scale(1.135 1.135)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-511.783 -491.564)" opacity="1">
+       <path stroke="206, 32, 43" stroke-width="30" stroke-linecap="butt" id="Path4" d="M511.78 45.45C511.78 45.45 622.96 387.42 622.96 387.42C622.96 387.42 981.01 386.37 981.01 386.37C981.01 386.37 695 598.26 695 598.26C695 598.26 801.79 938 801.79 938C801.79 938 511.78 730.04 511.78 730.04C511.78 730.04 221.76 938 221.76 938C221.76 938 329.54 600.02 329.54 600.02C329.54 600.02 42.54 386.37 42.54 386.37C42.54 386.37 399.82 385.66 399.82 385.66C399.82 385.66 511.78 45.45 511.78 45.45Z" fill="206, 32, 43" stroke-linejoin="miter" fill-rule="evenodd"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(511.783 491.564)">
+  <g transform="translate(128.359 158.477)">
+   <g transform="rotate(0)">
+    <g transform="scale(1.135 1.135)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-511.783 -491.564)" opacity="1">
+       <path stroke="224, 230, 220" stroke-width="25" stroke-linecap="butt" id="Path2" d="M511.78 45.45C511.78 45.45 622.96 387.42 622.96 387.42C622.96 387.42 981.01 386.37 981.01 386.37C981.01 386.37 695 598.26 695 598.26C695 598.26 801.79 938 801.79 938C801.79 938 511.78 730.04 511.78 730.04C511.78 730.04 221.76 938 221.76 938C221.76 938 329.54 600.02 329.54 600.02C329.54 600.02 42.54 386.37 42.54 386.37C42.54 386.37 399.82 385.66 399.82 385.66C399.82 385.66 511.78 45.45 511.78 45.45Z" fill="206, 32, 43" stroke-linejoin="miter" fill-rule="evenodd"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs/>
+</svg>

@@ -10,6 +10,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using ClassExtensions;
 
 namespace KardsGen
@@ -17,21 +18,45 @@ namespace KardsGen
 	
 	public static class Material
 	{
-		public static System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Material));
-		public static Image frameImg=((Image)(resources.GetObject("frame")));
-		public static Image kreditBoardImg__12_13=((Image)(resources.GetObject("kredit-board(12,13)")));
-		public static Image extraBorderImg__0_489=((Image)(resources.GetObject("extra-border(0,489)")));
-		public static Image spliterImg__98_91=((Image)(resources.GetObject("spliter(98,91)")));
+		/*
+		//public static string spaceName=typeof(Material).Namespace+".Material.";
+		public static string resPrefix="KardsGen.Material.";
+		public static Assembly assembly = Assembly.GetExecutingAssembly();
+		//public static Image frameImg=ImageExt.FromResource(resPrefix+"frame.png",assembly);//Frame 
+		public static Image frameImg=ImageExt.FromResource("KardsGen.Material.frame.png",assembly);
+		public static Image kreditBoardImg__12_13=ImageExt.FromResource(resPrefix+"kredit-board(12,13).png",assembly);//KreditBoard
+		public static Image extraBorderImg__0_489=ImageExt.FromResource(resPrefix+"extra-border(0,489).png",assembly);//ExtraBorder
+		public static Image spliterImg__98_91=ImageExt.FromResource(resPrefix+"spliter(98,91).png",assembly);//Spliter
 		
-		public static Image defenseBoardImg__330_473=((Image)(resources.GetObject("board(88,468)(330,473)")));
+		public static Image defenseBoardImg__330_473=ImageExt.FromResource(resPrefix+"board.board(88,468)(330,473).png",assembly);
 		public static Image atteckBoardImg__88_468=GetAtteckBoard();
-		public static Image HQBoardImg__166_343=((Image)(resources.GetObject("HQ-board(166,343)")));
-		public static Image specialBoardImg__82_468=((Image)(resources.GetObject("special-board(82,468)")));
+		public static Image HQBoardImg__166_343=ImageExt.FromResource(resPrefix+"board.HQ-board(166,343).png",assembly);
+		public static Image specialBoardImg__82_468=ImageExt.FromResource(resPrefix+"board.special-board(82,468).png",assembly);
 		
 		public static Image[] nationIcon=GetNationIcons();
 		public static Image[] rarityIcon=GetRarityIcons();
 		public static Image[] typeIcon=GetTypeIcons();
 		public static Image[] setIcon=GetSetIcons();
+		*/
+				//public static string spaceName=typeof(Material).Namespace+".Material.";
+		public static string resPrefix="KardsGen.Material.";
+		public static Assembly assembly;
+		//public static Image frameImg=ImageExt.FromResource(resPrefix+"frame.png",assembly);//Frame 
+		public static Image frameImg;
+		public static Image kreditBoardImg__12_13;
+		public static Image extraBorderImg__0_489;
+		public static Image spliterImg__98_91;
+		
+		public static Image defenseBoardImg__330_473;
+		public static Image atteckBoardImg__88_468;
+		public static Image HQBoardImg__166_343;
+		public static Image specialBoardImg__82_468;
+		
+		public static Image[] nationIcon;
+		public static Image[] nationAirIcon;
+		public static Image[] rarityIcon;
+		public static Image[] typeIcon;
+		public static Image[] setIcon;
 		
 		public const uint 
 			defaultDark=0xff50514C,
@@ -44,6 +69,27 @@ namespace KardsGen
 			typeCount=8,
 			setCount=12;
 		
+		public static void Init()
+		{
+			assembly = Assembly.GetExecutingAssembly();
+			frameImg=ImageExt.FromResource(resPrefix+"frame.png",assembly);//Frame 
+			//frameImg=ImageExt.FromResource("KardsGen.Material.frame.png",assembly);
+			kreditBoardImg__12_13=ImageExt.FromResource(resPrefix+"kredit-board(12,13).png",assembly);//KreditBoard
+			extraBorderImg__0_489=ImageExt.FromResource(resPrefix+"extra-border(0,402).png",assembly);//ExtraBorder
+			spliterImg__98_91=ImageExt.FromResource(resPrefix+"spliter(98,91).png",assembly);//Spliter
+			
+			defenseBoardImg__330_473=ImageExt.FromResource(resPrefix+"board.board(88,468)(330,473).png",assembly);
+			atteckBoardImg__88_468=GetAtteckBoard();
+			HQBoardImg__166_343=ImageExt.FromResource(resPrefix+"board.HQ-board(166,343).png",assembly);
+			specialBoardImg__82_468=ImageExt.FromResource(resPrefix+"board.special-board(82,468).png",assembly);
+			
+			nationIcon=GetNationIcons();
+			nationAirIcon=GetNationAirIcons();
+			rarityIcon=GetRarityIcons();
+			typeIcon=GetTypeIcons();
+			setIcon=GetSetIcons();
+		}
+		
 		static Image GetAtteckBoard()
 		{
 			Image atkbdimg=(Image)defenseBoardImg__330_473.Clone();
@@ -55,7 +101,7 @@ namespace KardsGen
 			Image[] imgs=new Image[rarityCount];
 			for (int i = 0; i < rarityCount; i++)
 			{
-				imgs[i]=(Image)(resources.GetObject( ((Rarity)i).ToString() ));
+				imgs[i]=ImageExt.FromResource( resPrefix+"Rarity."+((Rarity)i).ToString()+".png" ,assembly);
 			}
 			return imgs;
 		}
@@ -64,7 +110,7 @@ namespace KardsGen
 			Image[] imgs=new Image[typeCount];
 			for (int i = 1; i < typeCount; i++)
 			{
-				imgs[i]=(Image)(resources.GetObject( ((Type)i).ToString() ));
+				imgs[i]=ImageExt.FromResource( resPrefix+"Type."+((Type)i).ToString()+".png" ,assembly);
 			}
 			return imgs;
 		}
@@ -73,7 +119,17 @@ namespace KardsGen
 			Image[] nationsArr=new Image[nationCount];
 			for (int i = 0; i < nationCount; i++)
 			{
-				nationsArr[i]=(Image)(resources.GetObject( ((Nation)i).ToString() ));
+				nationsArr[i]=ImageExt.FromResource( resPrefix+"Nation."+((Nation)i).ToString()+".png" ,assembly);
+			}
+			return nationsArr;
+			//nations[0]=((Image)(resources.GetObject("USA")));
+		}
+		static Image[] GetNationAirIcons()
+		{
+			Image[] nationsArr=new Image[nationCount];
+			for (int i = 0; i < nationCount; i++)
+			{
+				nationsArr[i]=ImageExt.FromResource( resPrefix+"Nation.Air."+((Nation)i).ToString()+".png" ,assembly);
 			}
 			return nationsArr;
 			//nations[0]=((Image)(resources.GetObject("USA")));
@@ -83,7 +139,7 @@ namespace KardsGen
 			Image[] imgs=new Image[setCount];
 			for (int i = 0; i < setCount; i++)
 			{
-				imgs[i]=(Image)(resources.GetObject( ((Set)i).ToString() ));
+				imgs[i]=ImageExt.FromResource( resPrefix+"Set."+((Set)i).ToString()+".png" ,assembly);
 			}
 			return imgs;
 		}
@@ -120,6 +176,10 @@ namespace KardsGen
 		public static void Dispose()
 		{
 			foreach(var img in nationIcon)
+			{
+				img.Dispose();
+			}
+			foreach(var img in nationAirIcon)
 			{
 				img.Dispose();
 			}

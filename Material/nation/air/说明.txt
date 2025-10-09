@@ -1,0 +1,20 @@
+空军国家图标为作者自行复刻空军卡牌上的国家图标
+使用2d矢量动画软件friction绘制并导出为svg，使用Free SVG Editor导出svg为png
+(friction: https://friction.graphics)
+(Free SVG Editor: https://freepicturesolutions.com/free-svg-editor.html)
+(friction附带svgo的仓库发布链接：https://github.com/friction2d/friction/releases)
+
+friction导出的svg需要删除填充背景颜色的矩形，并且需要把最内层各个元素的颜色填充从fill="rgba([r],[g],[b],[a])"删改成fill="[r],[g],[b]"
+（替换'rgba('为空、替换', 1)"'为'"'）
+介于friction导出的svg过于复杂，软件官方github仓库的发行版附带了svg精简程序svgo，可将导出的svg简化（生成单行svg）
+friction生成并手动修改可使用的svg保存在friction-svg文件夹中，svgo简化的svg放在air目录下。所有简化的svg都手动添加了换行和缩进方便手动修改
+（为方便批量简化，可修改cvt.bat脚本中"set svgo_dir="后的路径值为svgo-win程序所在目录，或直接复制到air目录下并将值设为"."，然后双击运行cvt.bat）
+
+对比复刻说明：
+	卡牌图片导入后放大18倍进行复刻，或使用diy-kards的空军图标素材导入后放大9倍（德国图标为方便放大7.8倍）
+	美国、苏联空军图标的星形由官网卡组制作国家选择界面的网页svg直接导入fricion
+	德国空军图标为官网卡组制作国家选择界面的网页svg角落部分删除黑边得到
+	（德国空军图标diy-kards素材与官网卡牌不一致，选择官网卡牌方案，复刻diy-kards素材的friction项目废弃）
+	意大利空军图标在查找其高清图标后对比束棒形状复刻
+	
+	苏联空军图标在使用svgo程序简化后需要手动删除路径中Z字母前一对坐标（这对多余的坐标可能是显示范围裁剪导致的）

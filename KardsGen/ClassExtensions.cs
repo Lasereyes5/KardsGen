@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace ClassExtensions
 {
@@ -175,6 +176,18 @@ namespace ClassExtensions
 			}
 		}
 		
+		public static Image FromResource(string resName,Assembly resAsm=null)
+		{
+			var assembly=resAsm;
+			if(assembly==null)assembly=Assembly.GetExecutingAssembly();
+			
+			var stream = assembly.GetManifestResourceStream(resName);
+			var imgStm=Image.FromStream(stream);
+			var img=CopyFromImage(imgStm);
+			imgStm.Dispose();
+			return img;
+			//stream.Dispose();
+		}
 		public static Image CopyFromFile(string imgPath)
 		{
 			using(var img=Image.FromFile(imgPath))
@@ -189,7 +202,7 @@ namespace ClassExtensions
 			
 			Graphics g=Graphics.FromImage(bmp);
 			g.DrawImageUnscaled(img,new Point(0,0));
-			g.Flush();
+			//g.Flush();
 			g.Dispose();
 			img.Dispose();
 			

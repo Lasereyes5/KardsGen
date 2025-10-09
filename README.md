@@ -17,6 +17,7 @@ Kards游戏风格卡牌生成器
 
 
 ### 用法
+（可以在右上角点击帮助按钮，点击帮助按钮后再点击需要帮助的地方显示说明文本；点击帮助按钮后点击右上角的`K`可查看该项目及使用的库的许可证）
 - 根据自己的想法写出卡牌名称和描述
 	- 卡牌名称编辑框旁边有深色名称开关，在选择自定义国家时可以切换，以应对可能的浅色背景板
 	- 卡牌描述文本能自动调整尺寸，将其限制在一个固定的高度范围内
@@ -58,12 +59,12 @@ Kards游戏风格卡牌生成器
 - 图片素材取自Kards官网各卡牌
 - 图标素材取自Kards官网网页元素矢量图，图标微调白色，使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
 	- 攻击和防御背景板修改自法国svg图标，特殊攻击背景板和中立国家图标自制
+	- 空军国家图标使用[Friction](https://friction.graphics/)仿照卡牌绘制矢量图后导出为svg并使用官方附带发行的svg简化程序svgo简化并手动修改，最后使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
 	- （显示范围有问题的svg已通过viewBox进行修正，无需再修改内部元素，在[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)中调整尺寸后即可直接导出）
-- 模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
+- 卡牌模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
 
 ### 项目缺陷
 - 只能生成普通大小的卡牌图片(500×702)，卡牌原始大小应为1448×2034
-- 空军卡牌没有其特殊国家图标
 - 数值背景板和类型图标边框因取自svg矢量图素材，全部为纯色，实际上应该是卡面背景图
 - 无法制作闪卡
 - 根据便利性作出的妥协

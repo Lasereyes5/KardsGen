@@ -124,7 +124,18 @@ namespace KardsGen
 		{
 			Image img;
 			//g.DrawImageUnscaled(Material.nationIcon[(int)nation],Material.GetNationPosition(nation));
-			if(nation!=Nation.Custom)img=Material.nationIcon[(int)nation];
+			if(nation!=Nation.Custom)
+			{
+				switch (type) {
+					case Type.Fighter:
+						img=Material.nationAirIcon[(int)nation];
+						break;
+					case Type.Bomber:goto case Type.Fighter;
+					default:
+						img=Material.nationIcon[(int)nation];
+						break;
+				}
+			}
 			else img=nationIcon;
 			
 			if(img==null)return;
@@ -189,6 +200,7 @@ namespace KardsGen
 					g.DrawImage(Material.specialBoardImg__82_468,new Point(82,468));
 					break;
 				case Type.Artillery:goto case Type.Bomber;
+				case Type.Fighter:goto case Type.Bomber;
 				case Type.Order:return;
 				case Type.Countermeasure:return;
 				default:
