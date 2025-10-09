@@ -46,11 +46,11 @@ namespace KardsGen
 			this.textBoxdefense = new System.Windows.Forms.TextBox();
 			this.textBoxName = new System.Windows.Forms.TextBox();
 			this.comboBoxRarity = new System.Windows.Forms.ComboBox();
-			this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
-			this.pictureBoxImgView = new System.Windows.Forms.PictureBox();
+			this.pictureBoxPreview = new WinDragDrop.PictureBoxWDD();
+			this.pictureBoxImgView = new WinDragDrop.PictureBoxWDD();
 			this.textBoxDescription = new System.Windows.Forms.TextBox();
-			this.pictureBoxNationView = new System.Windows.Forms.PictureBox();
-			this.pictureBoxSetView = new System.Windows.Forms.PictureBox();
+			this.pictureBoxNationView = new WinDragDrop.PictureBoxWDD();
+			this.pictureBoxSetView = new WinDragDrop.PictureBoxWDD();
 			this.checkBoxIsDark = new System.Windows.Forms.CheckBox();
 			this.comboBoxSet = new System.Windows.Forms.ComboBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
@@ -251,11 +251,11 @@ namespace KardsGen
 		}
 		private System.Windows.Forms.ComboBox comboBoxSet;
 		private System.Windows.Forms.CheckBox checkBoxIsDark;
-		private System.Windows.Forms.PictureBox pictureBoxSetView;
-		private System.Windows.Forms.PictureBox pictureBoxNationView;
+		private WinDragDrop.PictureBoxWDD pictureBoxSetView;
+		private WinDragDrop.PictureBoxWDD pictureBoxNationView;
 		private System.Windows.Forms.TextBox textBoxDescription;
-		private System.Windows.Forms.PictureBox pictureBoxImgView;
-		private System.Windows.Forms.PictureBox pictureBoxPreview;
+		private WinDragDrop.PictureBoxWDD pictureBoxImgView;
+		private WinDragDrop.PictureBoxWDD pictureBoxPreview;
 		private System.Windows.Forms.ComboBox comboBoxRarity;
 		private System.Windows.Forms.TextBox textBoxName;
 		private System.Windows.Forms.TextBox textBoxdefense;

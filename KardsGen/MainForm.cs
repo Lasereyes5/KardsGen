@@ -30,17 +30,22 @@ namespace KardsGen
 		bool isCliped=false;
 		bool isClipping=false;
 		
-		string[] LicenseStrings=new string[]{"KardsGen","Ini"};
+		string[] LicenseStrings=new string[]{"KardsGen","Ini","WinFormsComInterop"};
 		
 		void Init()
 		{
 			Material.Init();
 			gen=new CardGen();
 			InitializeComponent();
-			EnableDragDrop(pictureBoxPreview,(s)=>UpdateCard(s));
-			EnableDragDrop(pictureBoxImgView,(s)=>UpdatePic(s));
-			EnableDragDrop(pictureBoxNationView,(s)=>UpdateNation(s));
-			EnableDragDrop(pictureBoxSetView,(s)=>UpdateSet(s));
+			// PictureBoxWDD
+			pictureBoxPreview.AllowWinDrop=true;
+			pictureBoxImgView.AllowWinDrop=true;
+			pictureBoxNationView.AllowWinDrop=true;
+			pictureBoxSetView.AllowWinDrop=true;
+			pictureBoxPreview.WinDragDrop+=(fs)=>UpdateCard(fs[0]);
+			pictureBoxImgView.WinDragDrop+=(fs)=>UpdatePic(fs[0]);
+			pictureBoxNationView.WinDragDrop+=(fs)=>UpdateNation(fs[0]);
+			pictureBoxSetView.WinDragDrop+=(fs)=>UpdateSet(fs[0]);
 			pictureBoxNationView.BackColor=gen.nationColor;
 			
 			comboBoxType.Items.AddRange(TextData.TypeText);
@@ -313,34 +318,6 @@ namespace KardsGen
 			return tp;
 		}
 		
-		public delegate void StrGeter(string r);
-		void EnableDragDrop(Control c,StrGeter gs)
-		{
-			c.AllowDrop=true;
-			c.DragEnter+= DragEnterFunc;
-			c.DragDrop+=(sender,e)=>{
-				string path = (
-					(string[])e
-					.Data
-					.GetData(DataFormats.FileDrop)
-				)[0];
-				gs.Invoke(path);
-			};
-			
-		}
-		void EnableDragDrop(Control c)
-		{
-			c.AllowDrop=true;
-			c.DragEnter+= DragEnterFunc;
-		}
-		void DragEnterFunc(object sender, DragEventArgs e)
-		{
-			if (e.Data.GetDataPresent(DataFormats.FileDrop))
-				e.Effect = DragDropEffects.All;			//重要代码：表明是所有类型的数据，比如文件路径
-			else
-				e.Effect = DragDropEffects.None;
-		}
-		
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			gen.Dispose();
@@ -599,7 +576,6 @@ namespace KardsGen
 			OpenSetPic();
 			UpdatePreview();
 		}
-		
 		
 		
 		Form lv;

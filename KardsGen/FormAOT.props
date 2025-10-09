@@ -1,0 +1,34 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <!--
+    <UseWindowsForms>true</UseWindowsForms>
+  -->
+
+  <!-- winform aot configs -->
+  <PropertyGroup>
+    <PublishAot>true</PublishAot>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+  </PropertyGroup>
+
+  <PropertyGroup>
+  	<XmlResolverIsNetworkingEnabledByDefault>false</XmlResolverIsNetworkingEnabledByDefault>
+  </PropertyGroup>
+  <ItemGroup>
+  	<!-- We really should introduce a first class property for this -->
+  	<RuntimeHostConfigurationOption Include="System.Windows.Forms.PictureBox.UseWebRequest" Value="false" Trim="true" />
+  </ItemGroup>
+	
+  <Target Name="RemoveWPFReference" BeforeTargets="WriteIlcRspFileForCompilation">
+  	<ItemGroup>
+  		<IlcReference Remove="@(IlcReference)" Condition="'%(Filename)' == 'PresentationFramework'" />
+  	</ItemGroup>
+  </Target>
+
+
+  <ItemGroup>
+    <PackageReference Include="WinFormsComInterop" Version="0.5.0" />
+  </ItemGroup>
+
+</Project>

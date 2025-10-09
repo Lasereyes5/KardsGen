@@ -5,7 +5,7 @@ Kards游戏风格卡牌生成器
 
 ![卡牌生成器](Cards/卡牌生成器.png)
 
-使用SharpDevelop编写，整改了项目文件用.net sdk编译，不过会报判空警告。
+使用SharpDevelop编写，整改了项目文件用.net sdk aot发布，不过会报判空警告。
 
 介于本人恶趣味，我还把项目介绍写成了[论文形式项目介绍](论文形式项目介绍.md)，欢迎大家前去赤石盒袅，能赤完的是这个👍。
 ~~这东西是我在毕业季做出来的，所以四舍五入这个项目也能算是我的毕业设计。~~
@@ -51,10 +51,11 @@ Kards游戏风格卡牌生成器
 - .NET SDK
 	- 在项目目录打开控制台窗口，输入`dotnet msbuild /restore /p:Configuration=Release /p:Platform=x64`（或直接使用[构建脚本](build.bat)）
 
-可以使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)进行裁剪
-- 如果不使用或无法使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)，可以换个windows特有的土方法：运行程序并尝试使用一些功能，同时尝试删除程序的所有文件。
-	- 原理：被程序调用到的程序集就会被文件锁给锁住，无法删除，就这样自动清掉了未调用的程序集。（可以复制一份裁剪过的程序，再把回收站里刚才删掉的程序集还原，避免积攒垃圾文件）
-	- 为以防万一，可以把土方法裁剪过后的程序覆盖到先前使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)裁剪的程序目录里，以保证不缺少文件。
+### 发布AOT程序
+- .NET SDK
+	- 在项目目录的KardsGen文件夹下打开控制台窗口，输入`dotnet publish /restore /p:RestoreAdditionalProjectSources=packages`（或直接使用[离线发布脚本](publish_offline.bat)）
+		- （不知道什么原因，使用publish模式生成aot程序时，如果使用`dotnet msbuild`，程序能成功生成，但是无法直接运行，程序体积也异常小）
+
 
 
 ### 素材
@@ -77,3 +78,4 @@ Kards游戏风格卡牌生成器
 
 ### 本项目使用的其他项目
 - [Ini](https://github.com/Enichan/Ini "Ini file reader/writer for C#/.NET written in pure .NET in a single source file.")
+- [WinFormsComInterop](https://github.com/kant2002/WinFormsComInterop "ComWrappers required to run NativeAOT and WinForms")

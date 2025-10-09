@@ -9,6 +9,7 @@
  */
 using System;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace KardsGen
 {
@@ -23,6 +24,7 @@ namespace KardsGen
 		[STAThread]
 		private static void Main(string[] args)
 		{
+			ComWrappers.RegisterForMarshalling(WinFormsComInterop.WinFormsComWrappers.Instance);
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 			string picpath=null;
