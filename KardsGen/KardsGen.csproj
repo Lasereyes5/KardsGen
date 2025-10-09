@@ -12,6 +12,14 @@
     <Configuration>Release</Configuration>
     <Optimize>true</Optimize>
     <SelfContained>true</SelfContained>
+    
   </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="License\Ini" />
+    <EmbeddedResource Include="License\KardsGen" />
+  </ItemGroup>
+
+  <Import Project="Material.props" />
 
 </Project>

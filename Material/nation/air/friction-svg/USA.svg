@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Friction - https://friction.graphics -->
+
+<svg viewBox="0 0 1460 1080" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g transform="translate(0 0)">
+  <g transform="translate(728.749 544.312)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(0 0)" opacity="1">
+       <ellipse cx="0" stroke-width="1" stroke-linejoin="miter" stroke="none" rx="450" stroke-linecap="butt" cy="0" ry="450" fill="56, 75, 133" id="BackCircle"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(623.618 133.88)">
+  <g transform="translate(115.442 401.443)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-623.618 -133.88)" opacity="1">
+       <rect x="0" stroke-width="1" stroke-linejoin="miter" height="280" stroke="none" rx="0" stroke-linecap="butt" width="1230" y="0" ry="0" fill="56, 75, 133" id="BackBar"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(581.035 85.683)">
+  <g transform="translate(152.929 449.64)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-581.035 -85.683)" opacity="1">
+       <rect x="0" stroke-width="1" stroke-linejoin="miter" height="180" stroke="none" rx="0" stroke-linecap="butt" width="1156" y="0" ry="0" fill="224, 230, 220" id="Bar"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(0 0)">
+  <g transform="translate(728.749 544.312)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(0 0)" opacity="1">
+       <ellipse cx="0" stroke-width="1" stroke-linejoin="miter" stroke="none" rx="400" stroke-linecap="butt" cy="0" ry="400" fill="56, 75, 133" id="Cover"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(400.853 360.459)">
+  <g transform="translate(334.09 141.121)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-400.853 -360.459)" opacity="1">
+       <path fill-rule="evenodd" stroke-width="1" stroke-linejoin="miter" stroke="none" stroke-linecap="butt" d="M170.46 715.07C170.33 710.46 172.32 706.33 173.64 702.07C189.84 650.49 206.74 599.14 223.8 547.85C234.31 516.25 244.36 484.5 254.8 452.85C256.31 448.26 255.52 445.85 251.53 442.67C211.87 411 170.19 382 128.87 352.52C106.597 336.633 84.4701 320.55 62.49 304.27C52.14 296.65 42.11 288.57 31.98 280.64C30.7879 279.541 29.6913 278.355 28.69 277.08C30.92 275.9 32.9 276.44 34.77 276.44C124.93 276.4 215.09 276.427 305.25 276.52C310.05 276.52 312.11 275 313.57 270.52C326.09 232 339 193.68 351.47 155.18C363.64 117.55 375.47 79.79 387.36 42.09C391 30.53 394.57 19 398.49 6.34C402.4 11.99 403.54 17.62 405.36 22.82C415.41 51.56 425.52 80.28 434.89 109.25C451.75 161.34 468.14 213.6 484.65 265.81C487.98 276.36 487.82 276.41 498.78 276.41C498.78 276.41 772.78 276.41 772.78 276.41C768.78 281.76 763.59 284.64 759.07 288.08C713.13 323.08 666.15 356.65 619.13 390.15C594.96 407.37 571.38 425.4 547.41 442.9C544.87 444.75 544.5 446.16 545.41 449.05C554 477.31 562.82 505.48 572.17 533.5C584.557 570.7 596.833 607.946 609 645.24C616.1 667.01 622.84 688.9 629.72 710.75C630.08 711.89 631.04 712.98 630.02 714.66C625.8 713.37 622.44 710.43 619.02 707.94C576.353 677.273 533.747 646.493 491.2 615.6C462.42 594.69 433.79 573.6 405.13 552.5C402.13 550.27 399.77 549.6 396.13 552.26C354.61 582.7 312.78 612.73 271.31 643.26C238.763 667.213 205.984 690.84 172.97 714.14C172.194 714.573 171.377 714.906 170.52 715.14C170.52 715.14 170.46 715.07 170.46 715.07Z" fill="224, 230, 220" id="Star"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs/>
+</svg>

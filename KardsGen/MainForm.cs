@@ -10,7 +10,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+
 using ClassExtensions;
 
 namespace KardsGen
@@ -20,14 +23,19 @@ namespace KardsGen
 	/// </summary>
 	public partial class MainForm : Form
 	{
-		CardGen gen=new CardGen();
+		CardGen gen;
 		Pen pen=new Pen(Color.Red);
 		Rectangle range=Rectangle.Empty;
 		Rectangle showRange=Rectangle.Empty;
 		bool isCliped=false;
 		bool isClipping=false;
+		
+		string[] LicenseStrings=new string[]{"KardsGen","Ini"};
+		
 		void Init()
 		{
+			Material.Init();
+			gen=new CardGen();
 			InitializeComponent();
 			EnableDragDrop(pictureBoxPreview,(s)=>UpdateCard(s));
 			EnableDragDrop(pictureBoxImgView,(s)=>UpdatePic(s));
@@ -45,9 +53,39 @@ namespace KardsGen
 			comboBoxNation.SelectedIndex=(int)Nation.Custom;
 			comboBoxSet.SelectedIndex=(int)Set.FanMade;
 		}
+		HelpProvider help=new HelpProvider();
+		void InitHelp()
+		{
+			//this.Controls.Add(help);
+			SetControlHelp(textBoxDeploymentCost,"卡牌使用花费\n（总部可忽略）");
+			SetControlHelp(textBoxOperationCost,"卡牌行动花费\n（非单位可忽略）");
+			SetControlHelp(textBoxAtteck,"卡牌攻击力\n（非单位可忽略）");
+			SetControlHelp(textBoxdefense,"卡牌防御力\n（非目标可忽略）");
+			
+			SetControlHelp(comboBoxType,"卡牌类型");
+			SetControlHelp(comboBoxNation,"卡牌所属国家\n（可在自定义状态下在右边拖拽或左键添加自定义图标，右键更改单位背景板颜色）");
+			SetControlHelp(comboBoxRarity,"卡牌稀有度\n（总部可忽略）");
+			SetControlHelp(comboBoxSet,"卡牌所属套装\n（可在自定义状态下在右边拖拽或左键添加自定义图标，总部可忽略）");
+			SetControlHelp(pictureBoxNationView,"在自定义状态下拖拽或左键添加自定义国家图标\n右键更改单位背景板颜色\n（若左键后退出对话框则清空图片）");
+			SetControlHelp(pictureBoxSetView,"在自定义状态下拖拽或左键添加自定义套装图标\n（若左键后退出对话框则清空图片）");
+			
+			SetControlHelp(pictureBoxImgView,"卡牌图片预览框\n\t拖拽或左键添加自定义卡牌图片\n\t右键裁剪图片\n\t（若左键后退出对话框则清空图片）\n\t（预览框会展示图片显示范围）\n裁图窗口操作：\n\t左键拖拽框选显示范围\n\t回车或F12退回全选范围或退出裁剪");
+			SetControlHelp(pictureBoxPreview,"卡牌预览框\n\t左键保存图片\n\t右键保存卡牌文件\n\t拖拽加载卡牌文件");
+			
+			SetControlHelp(textBoxName,"卡牌名称\n（自定义国家单位类型下在右边可选择名称是否深色）");
+			SetControlHelp(textBoxDescription,"卡牌介绍\n（纵向尺寸自动调整）");
+			SetControlHelp(checkBoxIsDark,"卡牌单位名称是否深色");
+			
+		}
+		void SetControlHelp(Control c,string helpStr)
+		{
+			help.SetShowHelp(c,true);
+			help.SetHelpString(c,helpStr);
+		}
 		public MainForm(string path)
 		{
 			Init();
+			InitHelp();
 			if(!string.IsNullOrEmpty(path))
 			{
 				UpdatePic(path);
@@ -240,6 +278,41 @@ namespace KardsGen
 			}
 		}
 		
+		TabPage[] LicensePages(string[] resNames)
+		{
+			TabPage[] tbs=new TabPage[resNames.Length];
+			for (int i = 0; i < resNames.Length; i++)
+			{
+				tbs[i]=LicensePage(resNames[i]);
+			}
+			return tbs;
+		}
+		TabPage LicensePage(string resName)
+		{
+			var rtb=new RichTextBox();
+			rtb.Dock=DockStyle.Fill;
+			rtb.ReadOnly=true;
+			
+			var tp=new TabPage();
+			tp.Text=resName;
+			tp.Controls.Add(rtb);
+			
+			//string ns=MethodBase.GetCurrentMethod().DeclaringType.Namespace;
+			using (
+				var stream=
+				Assembly
+				.GetExecutingAssembly()
+				.GetManifestResourceStream(@"KardsGen.License."+resName)
+			)
+			{
+				var sr=new StreamReader(stream);
+				rtb.Text=sr.ReadToEnd();
+				sr.Dispose();
+			}
+			
+			return tp;
+		}
+		
 		public delegate void StrGeter(string r);
 		void EnableDragDrop(Control c,StrGeter gs)
 		{
@@ -267,17 +340,7 @@ namespace KardsGen
 			else
 				e.Effect = DragDropEffects.None;
 		}
-		/*
-		void PictureBoxImgViewDragDrop(object sender, DragEventArgs e)
-		{
-			string path = (
-				(string[])e
-				.Data
-				.GetData(DataFormats.FileDrop)
-			)[0];
-			UpdatePic(path);
-		}
-		*/
+		
 		void MainFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			gen.Dispose();
@@ -539,5 +602,26 @@ namespace KardsGen
 		
 		
 		
+		Form lv;
+		void MainFormHelpRequested(object sender, HelpEventArgs hlpevent)
+		{
+			
+			if(lv!=null)
+			{
+				lv.Activate();
+				return;
+			}
+			lv=new Form();
+			lv.Closed+=(ls,le)=>lv=null;
+			lv.Size=this.Size;
+			lv.Text="LicenseView";
+			
+			var tc=new TabControl();
+			tc.Dock=DockStyle.Fill;
+			tc.Controls.AddRange(LicensePages(LicenseStrings));
+			
+			lv.Controls.Add(tc);
+			lv.Show();
+		}
 	}
 }

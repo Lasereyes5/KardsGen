@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Friction - https://friction.graphics -->
+
+<svg viewBox="0 0 1000 1000" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(0 0)">
+  <g transform="translate(500 500)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g opacity="1" transform="translate(0 0)">
+       <ellipse ry="435" cx="0" stroke-width="20" stroke-linecap="round" fill="207, 31, 50" id="Circle" stroke="224, 230, 220" cy="0" stroke-linejoin="round" rx="435"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs/>
+</svg>

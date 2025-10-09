@@ -235,9 +235,13 @@ namespace KardsGen
 			this.Controls.Add(this.textBoxOperationCost);
 			this.Controls.Add(this.textBoxDeploymentCost);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.HelpButton = true;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "KardsGen";
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFormFormClosing);
+			this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.MainFormHelpRequested);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxImgView)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBoxNationView)).EndInit();

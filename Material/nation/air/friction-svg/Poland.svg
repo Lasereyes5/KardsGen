@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Friction - https://friction.graphics -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <g transform="translate(5 5)">
+  <g transform="translate(501.876 497.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="BackRightBottom" fill="224, 230, 220" ry="0" y="0" height="440" x="0" stroke="none" stroke-linecap="round" width="440"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(501.876 57.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="BackRightTop" fill="218, 25, 42" ry="0" y="0" height="440" x="0" stroke="none" stroke-linecap="round" width="440"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(61.8761 497.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="BackLeftBottom" fill="218, 25, 42" ry="0" y="0" height="440" x="0" stroke="none" stroke-linecap="round" width="440"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(61.8761 57.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="BackLeftTop" fill="224, 230, 220" ry="0" y="0" height="440" x="0" stroke="none" stroke-linecap="round" width="440"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(501.876 497.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="RightBottom" fill="218, 25, 42" ry="0" y="0" height="346" x="0" stroke="none" stroke-linecap="round" width="346"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(501.876 151.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="RightTop" fill="224, 230, 220" ry="0" y="0" height="346" x="0" stroke="none" stroke-linecap="round" width="346"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(155.876 497.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="LeftBottom" fill="224, 230, 220" ry="0" y="0" height="346" x="0" stroke="none" stroke-linecap="round" width="346"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <g transform="translate(5 5)">
+  <g transform="translate(155.876 151.703)">
+   <g transform="rotate(0)">
+    <g transform="scale(1 1)">
+     <g transform="skewX(0) skewY(0)">
+      <g transform="translate(-5 -5)" opacity="1">
+       <rect rx="0" stroke-width="10" stroke-linejoin="round" id="LeftTop" fill="218, 25, 42" ry="0" y="0" height="346" x="0" stroke="none" stroke-linecap="round" width="346"/>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs/>
+</svg>

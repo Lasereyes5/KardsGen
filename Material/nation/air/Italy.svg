@@ -1,0 +1,18 @@
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+	<circle stroke-width="30" stroke-linecap="round" fill="233, 243, 242" stroke="0, 0, 0" stroke-linejoin="round" r="466" transform="translate(499.17 500.528)"/>
+	
+	<rect ry="0" height="660" fill="0, 0, 0" width="60" rx="0" transform="translate(288.062 182.424)"/>
+	<rect ry="0" height="695" fill="0, 0, 0" width="25" rx="0" transform="translate(305.628 164.88)"/>
+	<path stroke-width="8" stroke-linecap="square" fill="none" stroke="0, 0, 0" d="m360.387 838.286-.215-206.361" stroke-linejoin="round"/>
+	<path fill="0, 0, 0" d="M340.806 613.775c0-.891 94.725-.42 94.725-.42s1.737-76.613-6.962-97.294c-8.7-20.681-16.05-27.27-16.05-27.27l-17.77 4.74s9.325 28.087 6.579 48.057c-2.747 19.97-19.54 29.033-26.58 29.815-7.04.782-34.036.033-34.036.033s-.783 42.24.094 42.339Z"/>
+	
+	<rect ry="0" height="660" fill="0, 0, 0" width="60" rx="0" transform="translate(459.062 182.424)"/>
+	<rect ry="0" height="695" fill="0, 0, 0" width="25" rx="0" transform="translate(476.628 164.88)"/>
+	<path stroke-width="8" stroke-linecap="square" fill="none" stroke="0, 0, 0" d="m531.387 838.286-.215-206.361" stroke-linejoin="round"/>
+	<path fill="0, 0, 0" d="M511.806 613.775c0-.891 94.725-.42 94.725-.42s1.737-76.613-6.962-97.294c-8.7-20.681-16.05-27.27-16.05-27.27l-17.77 4.74s9.325 28.087 6.579 48.057c-2.747 19.97-19.54 29.033-26.58 29.815-7.04.782-34.036.033-34.036.033s-.783 42.24.094 42.339Z"/>
+	
+	<rect ry="0" height="660" fill="0, 0, 0" width="60" rx="0" transform="translate(632.062 182.424)"/>
+	<rect ry="0" height="695" fill="0, 0, 0" width="25" rx="0" transform="translate(649.628 164.88)"/>
+	<path stroke-width="8" stroke-linecap="square" fill="none" stroke="0, 0, 0" d="m704.387 838.286-.214-206.361" stroke-linejoin="round"/>
+	<path fill="0, 0, 0" d="M684.806 613.775c0-.891 94.725-.42 94.725-.42s1.737-76.613-6.962-97.294c-8.699-20.681-16.05-27.27-16.05-27.27l-17.769 4.74s9.325 28.087 6.578 48.057c-2.747 19.97-19.54 29.033-26.579 29.815-7.04.782-34.037.033-34.037.033s-.782 42.24.094 42.339Z"/>
+</svg>
