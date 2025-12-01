@@ -1,1 +1,2 @@
 #ebebdc->#85827d(#858578 in png by color curve)
+#D3D1C3->#85827d
