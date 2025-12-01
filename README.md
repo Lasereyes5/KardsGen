@@ -17,10 +17,10 @@ Kards游戏风格卡牌生成器
 
 
 ### 用法
-（可以在右上角点击帮助按钮，点击帮助按钮后再点击需要帮助的地方显示说明文本；点击帮助按钮后点击右上角的`K`可查看该项目及使用的库的许可证）
 - 根据自己的想法写出卡牌名称和描述
 	- 卡牌名称编辑框旁边有深色名称开关，在选择自定义国家时可以切换，以应对可能的浅色背景板
 	- 卡牌描述文本能自动调整尺寸，将其限制在一个固定的高度范围内
+	- 卡牌描述文本标粗词条需在卡牌描述开头添加字符`#`
 - 填写部署花费（或使用花费）、行动花费、攻击力和防御力等数值（一些卡牌类型会忽略某些数值，可不填写）
 	- 数值文本能自动调整尺寸，但无固定范围限制
 - 选择卡牌的所属国家、类型、稀有度和套装
@@ -37,7 +37,7 @@ Kards游戏风格卡牌生成器
 	- 左键保存图片
 	- 右键保存卡牌文件（ini格式）
 	- 拖拽卡牌文件到上面可以加载卡牌文件
-		- 卡牌文件可手动编辑，具体格式查看1.4版本说明
+		- 卡牌文件可手动编辑，具体格式查看[卡牌文件格式说明](卡牌文件格式说明.md "卡牌文件格式说明")
 
 
 （程序输入框根据卡牌对应位置进行排版）
@@ -53,15 +53,15 @@ Kards游戏风格卡牌生成器
 
 ### 构建
 - SharpDevelop（或直接使用[构建脚本](build.bat)）
-	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)
+	- 依赖 .Net Framework 4.0（系统内置）
+	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)或[dotnet-sdk-aot分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk-aot)
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
 - 图标素材取自Kards官网网页元素矢量图，图标微调白色，使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
 	- 攻击和防御背景板修改自法国svg图标，特殊攻击背景板和中立国家图标自制
-	- 空军国家图标使用[Friction](https://friction.graphics/)仿照卡牌绘制矢量图后导出为svg并使用官方附带发行的svg简化程序svgo简化并手动修改，最后使用[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)导出png素材
 	- （显示范围有问题的svg已通过viewBox进行修正，无需再修改内部元素，在[Free SVG Editor](https://freepicturesolutions.com/free-svg-editor.html)中调整尺寸后即可直接导出）
-- 卡牌模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
+- 模板为[Hornil StylePix](https://www.hornil.com/en/stylepix/download/)项目
 
 ### 项目缺陷
 - 只能生成普通大小的卡牌图片(500×702)，卡牌原始大小应为1448×2034
@@ -71,7 +71,6 @@ Kards游戏风格卡牌生成器
 	- 作者比较懒，贴图和文本位置没啥大问题就懒得再调整
 	- 字体使用了系统内置的Microsoft YaHei UI（微软雅黑），实际上思源黑体最为还原
 - 无法添加粗体文本
-- 无法单独添加词条
 
 ### 本项目使用的其他项目
 - [Ini](https://github.com/Enichan/Ini "Ini file reader/writer for C#/.NET written in pure .NET in a single source file.")

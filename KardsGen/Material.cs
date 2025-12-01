@@ -67,7 +67,7 @@ namespace KardsGen
 			nationCount=10,
 			rarityCount=4,
 			typeCount=8,
-			setCount=12;
+			setCount=13;
 		
 		public static void Init()
 		{

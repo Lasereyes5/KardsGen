@@ -121,6 +121,7 @@
     <EmbeddedResource Include="Material\Nation\Air\Soviet.png" />
     <EmbeddedResource Include="Material\Nation\Air\USA.png" />
     <EmbeddedResource Include="Material\Nation\Air\Neutral.png" />
+    <EmbeddedResource Include="Material\Set\Homefront.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ImageClip.resx">
