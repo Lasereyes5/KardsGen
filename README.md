@@ -58,8 +58,28 @@ Kards游戏风格卡牌生成器
 
 ### 发布AOT程序
 - .NET SDK
-	- 在项目目录的KardsGen文件夹下打开控制台窗口，输入`dotnet publish /restore /p:RestoreAdditionalProjectSources=packages`（或直接使用[离线发布脚本](publish_offline.bat)）
+	- 在项目目录的KardsGen文件夹下打开控制台窗口，输入`dotnet publish /restore`（或直接使用[发布脚本](publish.bat)）
 		- （不知道什么原因，使用publish模式生成aot程序时，如果使用`dotnet msbuild`，程序能成功生成，但是无法直接运行，程序体积也异常小）
+- Visual Studio C++桌面开发环境
+	- 可手动修改`C:\Users\pc\.nuget\packages\microsoft.dotnet.ilcompiler\[包版本]\build\Microsoft.NETCore.Native.Windows.targets`的内容以手动添加msvc的link和lib路径以及windows sdk库路径，但较为复杂。建议仅在现有条件不支持直接安装Visual Studio C++桌面开发环境时使用此方法。
+		- 示例：
+
+```xml
+    <!--将最后有关VCVarsAll的配置全部注释掉并根据以下格式添加类似配置-->
+	<!--本示例中所有依赖文件都存至microsoft.dotnet.ilcompiler\[包版本]\build\dotnet-aot-minimal-dependency路径下-->
+    <ItemGroup>
+      <!--winsdk lib path-->
+      <AdditionalNativeLibraryDirectories Include="$(MSBuildThisFileDirectory)dotnet-aot-minimal-dependency\Windows Kits\10\Lib\10.0.26100.0\um\x64\" />
+      <AdditionalNativeLibraryDirectories Include="$(MSBuildThisFileDirectory)dotnet-aot-minimal-dependency\Windows Kits\10\Lib\10.0.26100.0\ucrt\x64\" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <!--msvc bin path-->
+      <_CppToolsDirectory>$(MSBuildThisFileDirectory)dotnet-aot-minimal-dependency\MSVC\14.29.30133\bin\Hostx64\x64\</_CppToolsDirectory>
+      <CppLinker>$(_CppToolsDirectory)link.exe</CppLinker>
+      <CppLibCreator>$(_CppToolsDirectory)lib.exe</CppLibCreator>
+    </PropertyGroup>
+```
 
 
 
