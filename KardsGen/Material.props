@@ -27,6 +27,7 @@
     <EmbeddedResource Include="Material\Set\Brothers.png" />
     <EmbeddedResource Include="Material\Set\Covert.png" />
     <EmbeddedResource Include="Material\Set\FanMade.png" />
+    <EmbeddedResource Include="Material\Set\Homefront.png" />
     <EmbeddedResource Include="Material\Set\Legions.png" />
     <EmbeddedResource Include="Material\Set\Naval.png" />
     <EmbeddedResource Include="Material\Set\Theaters.png" />

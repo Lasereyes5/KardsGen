@@ -238,25 +238,45 @@ namespace KardsGen
 					DrawStr(g,name,35,new PointF(265,19),colorCode);
 					break;
 			}
+			if(string.IsNullOrEmpty(description))return;
+			
 			int lineCount=1;//,sizeOffset=0;
 			float printSize=25;
-			if(!string.IsNullOrEmpty(description))
-				foreach (var c in description)
-				{
-					if(c=='\n')lineCount++;
-				}
+			foreach (var c in description)
+			{
+				if(c=='\n')lineCount++;
+			}
 			if(lineCount>2)printSize*=100f/(35*lineCount);
-			DrawStrLight(g,description,Convert.ToInt32(printSize),new PointF(250,552),Material.defaultDark);
+			
+			if(description[0]=='#')// seperatly print keywords and description
+			{
+				if(description.Length<2)return;
+				string keywords="";
+				string strippedDescription="";
+				if(lineCount<2)
+				{
+					keywords=description.Substring(1);
+				}
+				else
+				{
+					keywords=description.Substring(1,description.IndexOf('\n')-1);
+					strippedDescription=description.Substring(description.IndexOf('\n')+1);
+				}
+				DrawStr(g,keywords,printSize,new PointF(250,552),Material.defaultDark);
+				DrawStrLight(g,strippedDescription,printSize,new PointF(250,552f+printSize*1.7f),Material.defaultDark);
+			}
+			else DrawStrLight(g,description,printSize,new PointF(250,552),Material.defaultDark);
+			
 		}
 		
-		void DrawNum(Graphics g,int n,int size,PointF pos,uint colorCode=Material.defaultLight)
+		void DrawNum(Graphics g,int n,float size,PointF pos,uint colorCode=Material.defaultLight)
 		{
 			string numStr=n.ToString();
 			float printSize=size*(float)Math.Pow(0.85,numStr.Length>0?numStr.Length-1:0);
 			pos.Y+=(size-printSize);
-			DrawStr(g,numStr,Convert.ToInt32(printSize),pos,colorCode);
+			DrawStr(g,numStr,printSize,pos,colorCode);
 		}
-		void DrawStr(Graphics g,string s,int size,PointF pos,uint colorCode=Material.defaultLight)
+		void DrawStr(Graphics g,string s,float size,PointF pos,uint colorCode=Material.defaultLight)
 		{
 			Font f=new Font(fontname,size,FontStyle.Bold);
 			Brush b=new SolidBrush(ColorFix.FromArgb(colorCode));
@@ -267,7 +287,7 @@ namespace KardsGen
 			f.Dispose();
 			b.Dispose();
 		}
-		void DrawStrLight(Graphics g,string s,int size,PointF pos,uint colorCode=0xffC2C8B3)
+		void DrawStrLight(Graphics g,string s,float size,PointF pos,uint colorCode=0xffC2C8B3)
 		{
 			Font f=new Font(fontname,size);
 			Brush b=new SolidBrush(ColorFix.FromArgb(colorCode));

@@ -60,6 +60,7 @@ namespace KardsGen
 		Covert,
 		Blood,
 		Naval,
+		Homefront,
 		FanMade,
 		
 		Custom
@@ -110,6 +111,7 @@ namespace KardsGen
 			"秘密行动",
 			"血与铁",
 			"海战",
+			"国土阵线",
 			"同人创作",
 			
 			"自定义"

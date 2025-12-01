@@ -73,7 +73,7 @@ namespace KardsGen
 			SetControlHelp(pictureBoxPreview,"卡牌预览框\n\t左键保存图片\n\t右键保存卡牌文件\n\t拖拽加载卡牌文件");
 			
 			SetControlHelp(textBoxName,"卡牌名称\n（自定义国家单位类型下在右边可选择名称是否深色）");
-			SetControlHelp(textBoxDescription,"卡牌介绍\n（纵向尺寸自动调整）");
+			SetControlHelp(textBoxDescription,"卡牌介绍\n在开头添加\"#\"可标粗词条\n（纵向尺寸自动调整）");
 			SetControlHelp(checkBoxIsDark,"卡牌单位名称是否深色");
 			
 		}
