@@ -43,6 +43,7 @@ namespace KardsGen
 		Italy,
 		Poland,
 		Finland,
+		Anzac,
 		Neutral,
 		
 		Custom
@@ -61,6 +62,7 @@ namespace KardsGen
 		Blood,
 		Naval,
 		Homefront,
+		Oceania,
 		FanMade,
 		
 		Custom
@@ -95,6 +97,7 @@ namespace KardsGen
 			"意大利",
 			"波兰",
 			"芬兰",
+			"澳新军团",
 			"中立",
 			
 			"自定义"
@@ -112,6 +115,7 @@ namespace KardsGen
 			"血与铁",
 			"海战",
 			"国土阵线",
+			"澳新风暴",
 			"同人创作",
 			
 			"自定义"

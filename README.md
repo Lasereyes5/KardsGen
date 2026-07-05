@@ -20,7 +20,7 @@ Kards游戏风格卡牌生成器
 - 根据自己的想法写出卡牌名称和描述
 	- 卡牌名称编辑框旁边有深色名称开关，在选择自定义国家时可以切换，以应对可能的浅色背景板
 	- 卡牌描述文本能自动调整尺寸，将其限制在一个固定的高度范围内
-	- 卡牌描述文本标粗词条需在卡牌描述开头添加字符`#`
+	- 卡牌描述文本标粗文本需用字符`#`包裹那段文本
 - 填写部署花费（或使用花费）、行动花费、攻击力和防御力等数值（一些卡牌类型会忽略某些数值，可不填写）
 	- 数值文本能自动调整尺寸，但无固定范围限制
 - 选择卡牌的所属国家、类型、稀有度和套装
@@ -54,7 +54,8 @@ Kards游戏风格卡牌生成器
 ### 构建
 - SharpDevelop（或直接使用[构建脚本](build.bat)）
 	- 依赖 .Net Framework 4.0（系统内置）
-	- 若想使用.NET SDK请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)或[dotnet-sdk-aot分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk-aot)
+	- 若想使用.NET SDK 以及构建aot程序请转至[dotnet-sdk分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk)
+	- （[dotnet-sdk-aot分支](https://github.com/Lasereyes5/KardsGen/tree/dotnet-sdk-aot)已弃用，曾用于为.NET 8 提供aot支持）
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
@@ -70,7 +71,6 @@ Kards游戏风格卡牌生成器
 - 根据便利性作出的妥协
 	- 作者比较懒，贴图和文本位置没啥大问题就懒得再调整
 	- 字体使用了系统内置的Microsoft YaHei UI（微软雅黑），实际上思源黑体最为还原
-- 无法添加粗体文本
 
 ### 本项目使用的其他项目
 - [Ini](https://github.com/Enichan/Ini "Ini file reader/writer for C#/.NET written in pure .NET in a single source file.")
