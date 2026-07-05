@@ -64,10 +64,10 @@ namespace KardsGen
 			defaultColorActivate=0xffCE8A31;
 		
 		public const int
-			nationCount=10,
+			nationCount=11,
 			rarityCount=4,
 			typeCount=8,
-			setCount=13;
+			setCount=14;
 		
 		public static void Init()
 		{
@@ -158,6 +158,7 @@ namespace KardsGen
 				case Nation.Italy:return ColorFix.FromArgb(0xff69696a);
 				case Nation.Poland:return ColorFix.FromArgb(0xff696353);
 				case Nation.Finland:return ColorFix.FromArgb(0xffbdbdad);
+				case Nation.Anzac:return ColorFix.FromArgb(0xff7a5828);
 				case Nation.Neutral:return ColorFix.FromArgb(0xff3b3b43);
 				//default:throw new Exception("Invalid value for Nation");
 			}

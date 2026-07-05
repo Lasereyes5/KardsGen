@@ -34,10 +34,11 @@ namespace ClassExtensions
 					case '\n':
 						sb.Append("\\n");
 						break;
-					case  '\r':
-						sb.Append("\\r");
+					case '\r':
+						// remove "\r" in escaped text
+						//sb.Append("\\r");
 						break;
-					case  '\\':
+					case '\\':
 						sb.Append("\\\\");
 						break;
 					default:
@@ -65,10 +66,13 @@ namespace ClassExtensions
 					switch (s[i])
 					{
 						case 'n':
-							sb.Append('\n');
+							// sb.Append('\n');
+							// only '\r\n' is new line in windows(winform) controls
+							sb.Append("\r\n");
 							break;
 						case 'r':
-							sb.Append('\r');
+							// remove single '\r' in unescaped text
+							// sb.Append('\r');
 							break;
 						case '\\':
 							sb.Append('\\');
@@ -82,7 +86,10 @@ namespace ClassExtensions
 			}
 			return sb.ToString();
 		}
-		
+		public static bool IsZHChar(this char ch)
+		{
+			return ((int)ch>=0x4e00 && (int)ch<=0x9fbb);
+		}
 		//for Enum
 		/*
 		/// <summary>

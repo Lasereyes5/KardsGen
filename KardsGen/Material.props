@@ -6,6 +6,7 @@
     <EmbeddedResource Include="Material\board\HQ-board%28166,343%29.png" />
     <EmbeddedResource Include="Material\board\special-board%2882,468%29.png" />
     <EmbeddedResource Include="Material\kredit-board%2812,13%29.png" />
+    <EmbeddedResource Include="Material\Nation\Anzac.png" />
     <EmbeddedResource Include="Material\Nation\Britain.png" />
     <EmbeddedResource Include="Material\Nation\Finland.png" />
     <EmbeddedResource Include="Material\Nation\France.png" />
@@ -30,6 +31,7 @@
     <EmbeddedResource Include="Material\Set\Homefront.png" />
     <EmbeddedResource Include="Material\Set\Legions.png" />
     <EmbeddedResource Include="Material\Set\Naval.png" />
+    <EmbeddedResource Include="Material\Set\Oceania.png" />
     <EmbeddedResource Include="Material\Set\Theaters.png" />
     <EmbeddedResource Include="Material\Set\Winter.png" />
     <EmbeddedResource Include="Material\Set\World.png" />
@@ -41,6 +43,7 @@
     <EmbeddedResource Include="Material\Type\Infantry.png" />
     <EmbeddedResource Include="Material\Type\Order.png" />
     <EmbeddedResource Include="Material\Type\Tank.png" />
+    <EmbeddedResource Include="Material\Nation\Air\Anzac.png" />
     <EmbeddedResource Include="Material\Nation\Air\Britain.png" />
     <EmbeddedResource Include="Material\Nation\Air\Finland.png" />
     <EmbeddedResource Include="Material\Nation\Air\France.png" />

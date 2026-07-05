@@ -20,7 +20,7 @@ Kards游戏风格卡牌生成器
 - 根据自己的想法写出卡牌名称和描述
 	- 卡牌名称编辑框旁边有深色名称开关，在选择自定义国家时可以切换，以应对可能的浅色背景板
 	- 卡牌描述文本能自动调整尺寸，将其限制在一个固定的高度范围内
-	- 卡牌描述文本标粗词条需在卡牌描述开头添加字符`#`
+	- 卡牌描述文本标粗文本需用字符`#`包裹那段文本
 - 填写部署花费（或使用花费）、行动花费、攻击力和防御力等数值（一些卡牌类型会忽略某些数值，可不填写）
 	- 数值文本能自动调整尺寸，但无固定范围限制
 - 选择卡牌的所属国家、类型、稀有度和套装
@@ -61,6 +61,20 @@ Kards游戏风格卡牌生成器
 	- 原理：被程序调用到的程序集就会被文件锁给锁住，无法删除，就这样自动清掉了未调用的程序集。（可以复制一份裁剪过的程序，再把回收站里刚才删掉的程序集还原，避免积攒垃圾文件）
 	- 为以防万一，可以把土方法裁剪过后的程序覆盖到先前使用[Zack.DotNetTrimmer](https://github.com/yangzhongke/Zack.DotNetTrimmer)裁剪的程序目录里，以保证不缺少文件。
 
+### 发布AOT程序
+- .NET SDK
+	- 在项目目录打开控制台窗口，输入`dotnet msbuild /t:publish /p:PublishAot=true /p:_SuppressWinFormsTrimError=true /restore /p:Configuration=Release /p:Platform=x64`（或直接使用[发布脚本](publish.bat)）
+- Visual Studio C++桌面开发环境
+	- 可手动修改`C:\Users\pc\.nuget\packages\microsoft.dotnet.ilcompiler\[包版本]\build\findvcvarsall.bat`的内容以手动修改msvc的link和lib路径以及windows sdk库路径，使其输出自定义路径。建议仅在现有条件不支持直接安装Visual Studio C++桌面开发环境时使用此方法。
+		- 输出示例：
+
+```txt
+[MSVC 可执行程序路径 1]#
+[库路径 1];[库路径 2];...[库路径 n]
+[MSVC 可执行程序路径 2]#
+[库路径 a];[库路径 b];...[库路径 z]
+...
+```
 
 ### 素材
 - 图片素材取自Kards官网各卡牌
@@ -77,7 +91,6 @@ Kards游戏风格卡牌生成器
 - 根据便利性作出的妥协
 	- 作者比较懒，贴图和文本位置没啥大问题就懒得再调整
 	- 字体使用了系统内置的Microsoft YaHei UI（微软雅黑），实际上思源黑体最为还原
-- 无法添加粗体文本
 
 ### 本项目使用的其他项目
 - [Ini](https://github.com/Enichan/Ini "Ini file reader/writer for C#/.NET written in pure .NET in a single source file.")

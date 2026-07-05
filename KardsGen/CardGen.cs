@@ -247,25 +247,7 @@ namespace KardsGen
 				if(c=='\n')lineCount++;
 			}
 			if(lineCount>2)printSize*=100f/(35*lineCount);
-			
-			if(description[0]=='#')// seperatly print keywords and description
-			{
-				if(description.Length<2)return;
-				string keywords="";
-				string strippedDescription="";
-				if(lineCount<2)
-				{
-					keywords=description.Substring(1);
-				}
-				else
-				{
-					keywords=description.Substring(1,description.IndexOf('\n')-1);
-					strippedDescription=description.Substring(description.IndexOf('\n')+1);
-				}
-				DrawStr(g,keywords,printSize,new PointF(250,552),Material.defaultDark);
-				DrawStrLight(g,strippedDescription,printSize,new PointF(250,552f+printSize*1.7f),Material.defaultDark);
-			}
-			else DrawStrLight(g,description,printSize,new PointF(250,552),Material.defaultDark);
+			DrawStrBoldSegs(g,description,printSize,new PointF(250,552),Material.defaultDark);
 			
 		}
 		
@@ -287,14 +269,56 @@ namespace KardsGen
 			f.Dispose();
 			b.Dispose();
 		}
-		void DrawStrLight(Graphics g,string s,float size,PointF pos,uint colorCode=0xffC2C8B3)
+		void DrawStrBoldSegs(Graphics g,string s,float size,PointF pos,uint colorCode=Material.defaultLight)
 		{
 			Font f=new Font(fontname,size);
+			Font fb=new Font(fontname,size,FontStyle.Bold);
 			Brush b=new SolidBrush(ColorFix.FromArgb(colorCode));
-			StringFormat sf=new StringFormat();
-			sf.Alignment=StringAlignment.Center;
-			g.DrawString(s,f,b,pos,sf);
+			StringFormat sf=StringFormat.GenericTypographic;
+			
+			bool isBold=false;
+			string[] lines=s.Split('\n');
+			//foreach (var line in lines)
+			for (int idx = 0; idx < lines.Length; idx++)
+			{
+				// prepare variables to store informations
+				// parse "##" to "#", '\n' won't appear here so change "##" -> '\n' -> '#' in text, avoid misparsing '#'
+				string[] segs=lines[idx].Replace("##","\n").Split('#');
+				if(segs[segs.Length-1]=="\r")segs[segs.Length-1]="";
+				SizeF lineSize=new SizeF(0f,g.MeasureString(lines[idx],f,pos,sf).Height);
+				float[] segWidthes=new float[segs.Length];
+				
+				// start measure width of segs
+				bool ifMeasureBold=isBold;
+				for (int i = 0; i < segs.Length; i++)
+				{
+					if(!string.IsNullOrEmpty(segs[i]))
+					{
+						// parse "##" to "#" in text
+						segs[i]=segs[i].Replace('\n','#');
+						segWidthes[i]=g.MeasureString(segs[i],ifMeasureBold?fb:f,pos,sf).Width;
+						lineSize.Width+=segWidthes[i];
+					}
+					ifMeasureBold=!ifMeasureBold;
+				}
+				
+				// draw each segment sepreately
+				PointF segPos=new PointF(pos.X-lineSize.Width/2, pos.Y+idx*lineSize.Height);
+				for (int i = 0; i < segs.Length; i++)
+				{
+					if(!string.IsNullOrEmpty(segs[i]))
+					{
+						g.DrawString(segs[i],isBold?fb:f,b,segPos,sf);
+						segPos.X+=segWidthes[i];
+					}
+					isBold=!isBold;
+				}
+				isBold=!isBold;
+			}
+			// g.DrawString(s,f,b,pos,sf);
+			
 			sf.Dispose();
+			fb.Dispose();
 			f.Dispose();
 			b.Dispose();
 		}
